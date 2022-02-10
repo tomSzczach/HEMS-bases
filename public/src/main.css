@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root{
+    --timer-box-height: 30px;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+body{
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    margin: 0;
+    padding: 13px 0;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 100vh;
+    padding: 8px;
+}
+
+#map{
+    height: 90vh;
+}
+
+#timer{
+    text-align: center;
+    padding: 8px 0;
+}
+
+.leaflet-popup-content{
+    margin: 5px !important;
+}
+.leaflet-popup-content p{
+    margin: 0 !important;
+    text-align: center;
+}
+
+.status-ready p{
+    color: green;
+    font-weight: 700; 
+}
+
+.status-emergency p{
+    color: orange;
+    font-weight: 700; 
+}
+
+.status-suspended p{
+    color: red;
+    font-weight: 700; 
+}
+
+.status-transport p{
+    color: blue;
+    font-weight: 700; 
+}
+
+.status-closed{
+    opacity: 0.9 !important;
+}
+.status-closed p{
+    color: grey;
+}
+
+p.weather-status{
+    color: black;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+.weather-status-red p.weather-status{
+    color: red;
+}
+
+.weather-status-yellow p.weather-status{
+    color: yellowgreen;
+}
+
+.weather-status-green p.weather-status{
+    color: green;
+}
+
+img{
+    height: 21px;
+}
+
+.aircraft-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding: 5px 0;
+}
+
+footer{
+    font-size: 0.8em;
+    text-align: center;
+}

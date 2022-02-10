@@ -1,0 +1,106 @@
+{
+    "bases": [
+        {
+            "base": "sanok",
+            "aircraftName": "Ratownik 10",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=50452.578125%2C143995.2265625%2C1144052.578125%2C552795.2265625&WIDTH=684&HEIGHT=256&X=427&Y=224"
+        },
+        {
+            "base": "gdansk",
+            "aircraftName": "Ratownik 3",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-48360.8984375%2C357411.2421875%2C1045239.1015625%2C766211.2421875&WIDTH=684&HEIGHT=256&X=322&Y=27"
+        },
+        {
+            "base": "koszalin",
+            "aircraftName": "Ratownik 22",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-48360.8984375%2C357411.2421875%2C1045239.1015625%2C766211.2421875&WIDTH=684&HEIGHT=256&X=232&Y=49"
+        },
+        {
+            "base": "szczecin",
+            "aircraftName": "Ratownik 11",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-48360.8984375%2C357411.2421875%2C1045239.1015625%2C766211.2421875&WIDTH=684&HEIGHT=256&X=173&Y=78"
+        },
+        {
+            "base": "gorzow-wielkopolski",
+            "aircraftName": "Ratownik 24",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-48360.8984375%2C357411.2421875%2C1045239.1015625%2C766211.2421875&WIDTH=684&HEIGHT=256&X=184&Y=136"
+        },
+        {
+            "base": "zielona-gora",
+            "aircraftName": "Ratownik 15",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-48360.8984375%2C357411.2421875%2C1045239.1015625%2C766211.2421875&WIDTH=684&HEIGHT=256&X=192&Y=191"
+        },
+        {
+            "base": "wroclaw",
+            "aircraftName": "Ratownik 13",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-33160.8984375%2C303011.2421875%2C1060439.1015625%2C711811.2421875&WIDTH=684&HEIGHT=256&X=241&Y=220"
+        },
+        {
+            "base": "opole",
+            "aircraftName": "Ratownik 23",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=23639.1015625%2C183011.2421875%2C1117239.1015625%2C591811.2421875&WIDTH=684&HEIGHT=256&X=245&Y=178"
+        },
+        {
+            "base": "krakow",
+            "aircraftName": "Ratownik 6",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=23639.1015625%2C183011.2421875%2C1117239.1015625%2C591811.2421875&WIDTH=684&HEIGHT=256&X=332&Y=217"
+        },
+        {
+            "base": "lublin",
+            "aircraftName": "Ratownik 7",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=80439.1015625%2C93411.2421875%2C1174039.1015625%2C502211.2421875&WIDTH=684&HEIGHT=256&X=426&Y=76"
+        },
+        {
+            "base": "warszawa",
+            "aircraftName": "Ratownik 12",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=60439.1015625%2C270211.2421875%2C1154039.1015625%2C679011.2421875&WIDTH=684&HEIGHT=256&X=357&Y=118"
+        },
+        {
+            "base": "sokolow-podlaski",
+            "aircraftName": "Ratownik 19",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=60439.1015625%2C270211.2421875%2C1154039.1015625%2C679011.2421875&WIDTH=684&HEIGHT=256&X=413&Y=106"
+        },
+        {
+            "base": "bialystok",
+            "aircraftName": "Ratownik 1",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=60439.1015625%2C270211.2421875%2C1154039.1015625%2C679011.2421875&WIDTH=684&HEIGHT=256&X=450&Y=57"
+        },
+        {
+            "base": "suwalki",
+            "aircraftName": "Ratownik 17",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=26839.1015625%2C373411.2421875%2C1120439.1015625%2C782211.2421875&WIDTH=684&HEIGHT=256&X=456&Y=55"
+        },
+        {
+            "base": "olsztyn",
+            "aircraftName": "Ratownik 8",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=26839.1015625%2C373411.2421875%2C1120439.1015625%2C782211.2421875&WIDTH=684&HEIGHT=256&X=353&Y=91"
+        },
+        {
+            "base": "bydgoszcz",
+            "aircraftName": "Ratownik 2",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=26839.1015625%2C373411.2421875%2C1120439.1015625%2C782211.2421875&WIDTH=684&HEIGHT=256&X=259&Y=119"
+        },
+        {
+            "base": "poznan",
+            "aircraftName": "Ratownik 9",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=26839.1015625%2C373411.2421875%2C1120439.1015625%2C782211.2421875&WIDTH=684&HEIGHT=256&X=205&Y=173"
+        },
+        {
+            "base": "ostrow-wielkopolski",
+            "aircraftName": "Ratownik 21",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=-1960.8984375%2C299811.2421875%2C1091639.1015625%2C708611.2421875&WIDTH=684&HEIGHT=256&X=264&Y=178"
+        },
+        {
+            "base": "lodz",
+            "aircraftName": "Ratownik 16",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=39639.1015625%2C197411.2421875%2C1133239.1015625%2C606211.2421875&WIDTH=684&HEIGHT=256&X=306&Y=112"
+        },
+        {
+            "base": "kielce",
+            "aircraftName": "Ratownik 5",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=39639.1015625%2C197411.2421875%2C1133239.1015625%2C606211.2421875&WIDTH=684&HEIGHT=256&X=365&Y=169"
+        }
+
+    ]
+}
+
