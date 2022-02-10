@@ -71,12 +71,13 @@ const ShowData = (data) => {
             [[data.lat, data.long], [data.flightViaLat, data.flightViaLong], [data.flightToLat, data.flightToLong]],
             {color: 'red'})
             .addTo(map);
-            
+
         elementsColl.push(polyline);
     }
     
     const popup = L.popup({
         "autoClose": false,
+        "autoPan": false,
         "closeButton": false,
         "closeOnClick": "",
         "closeOnEscapeKey": false,
