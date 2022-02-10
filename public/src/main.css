@@ -79,6 +79,10 @@ p.weather-status{
     font-size: 0.9em;
 }
 
+p.mission-type-desc{
+    font-weight: 400;
+}
+
 .weather-status-red p.weather-status{
     color: red;
 }

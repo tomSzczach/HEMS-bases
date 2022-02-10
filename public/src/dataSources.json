@@ -99,8 +99,17 @@
             "base": "kielce",
             "aircraftName": "Ratownik 5",
             "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text%2Fxml&LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS%2CBazy_HEMS&FORMAT=image%2Fpng&SRS=EPSG%3A2180&BBOX=39639.1015625%2C197411.2421875%2C1133239.1015625%2C606211.2421875&WIDTH=684&HEIGHT=256&X=365&Y=169"
+        },
+        {
+            "base": "katowice",
+            "aircraftName": "Ratownik 4",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text/xml&LAYERS=Trasy_przelotu_HEMS,Bazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS,Bazy_HEMS&FORMAT=image/png&SRS=EPSG:2180&BBOX=222060,75163,614460,764363&WIDTH=491&HEIGHT=862&X=351&Y=628"
+        },
+        {
+            "base": "plock",
+            "aircraftName": "Ratownik 18",
+            "url": "https://mapy.geoportal.gov.pl/wss/service/sdi/LPR/get?VERSION=1.1.1&SERVICE=WMS&REQUEST=GetFeatureInfo&INFO_FORMAT=text/xml&LAYERS=Trasy_przelotu_HEMS,Bazy_HEMS&QUERY_LAYERS=Trasy_przelotu_HEMS,Bazy_HEMS&FORMAT=image/png&SRS=EPSG:2180&BBOX=222060,75163,614460,764363&WIDTH=491&HEIGHT=862&X=410&Y=305"
         }
-
     ]
 }
 

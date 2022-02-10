@@ -48,6 +48,7 @@ const GetData = (base) => {
                 "flightViaLong": baseData.querySelector('[Name="DESTINATIONLONVIA"]').textContent,
                 "flightToLat": baseData.querySelector('[Name="DESTINATIONLAT"]').textContent,
                 "flightToLong": baseData.querySelector('[Name="DESTINATIONLON"]').textContent,
+                "missionType": baseData.querySelector('[Name="MISSIONTYPE"]').textContent,
                 "weatherStatus": baseData.querySelector('[Name="WEATHER"]').textContent,
                 "weatherStatusDesc": baseData.querySelector('[Name="WEATHERSTATUSDESCRIPTION"]').textContent,
                 "hemsStatus": baseData.querySelector('[Name="STATUS"]').textContent,
@@ -81,12 +82,13 @@ const ShowData = (data) => {
         "closeButton": false,
         "closeOnClick": "",
         "closeOnEscapeKey": false,
-        "className": `${StyleByHemsStatus(data.hemsStatus)} ${StyleByWeatherStatus(data.weatherStatus)}`
+        "className": `${(data.missionType == "Transport miedzyszpitalny") ? "status-transport" : StyleByHemsStatus(data.hemsStatus)} ${StyleByWeatherStatus(data.weatherStatus)}`
     })
     .setLatLng([data.lat, data.long])
     .setContent(`
         <p>${data.airport}</p>
         <p>${data.hemsStatusDesc}</p>
+        <p class="mission-type-desc">${data.missionType}</p>
         <div class="aircraft-name">
             <img src="images/helicopter.jpg" alt="Helikopter:"><p>${data.aircraftName}</p>
         </div>
