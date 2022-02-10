@@ -60,8 +60,21 @@ const GetData = (base) => {
 }
 
 const ShowData = (data) => {
-    const polyline = L.polyline([[data.lat, data.long], [data.flightViaLat, data.flightViaLong], [data.flightToLat, data.flightToLong]], {color: 'red'}).addTo(map);
 
+    if( data.hemsStatus == "2"  ||
+        data.hemsStatus == "3" ||
+        data.hemsStatus == "4" ||
+        data.hemsStatus == "5" ||
+        data.hemsStatus == "6")
+    {
+        const polyline = L.polyline(
+            [[data.lat, data.long], [data.flightViaLat, data.flightViaLong], [data.flightToLat, data.flightToLong]],
+            {color: 'red'})
+            .addTo(map);
+            
+        elementsColl.push(polyline);
+    }
+    
     const popup = L.popup({
         "autoClose": false,
         "closeButton": false,
@@ -80,7 +93,7 @@ const ShowData = (data) => {
     `)
     .openOn(map);
 
-    elementsColl.push(polyline, popup);
+    elementsColl.push(popup);
 }
 
 const StyleByHemsStatus = (status) => {
