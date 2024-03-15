@@ -68,8 +68,20 @@ const ShowData = (data) => {
         data.hemsStatus == "5" ||
         data.hemsStatus == "6")
     {
+        let route = [[data.lat, data.long]];
+
+        if (data.flightViaLat != 0 && data.flightViaLong != 0)
+        {
+            route.push([data.flightViaLat, data.flightViaLong]);
+        }
+
+        if (data.flightToLat != 0 && data.flightToLong != 0)
+        {
+            route.push([data.flightToLat, data.flightToLong]);
+        }        
+
         const polyline = L.polyline(
-            [[data.lat, data.long], [data.flightViaLat, data.flightViaLong], [data.flightToLat, data.flightToLong]],
+            [route],
             {color: 'red'})
             .addTo(map);
 
