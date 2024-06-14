@@ -1,114 +1,175 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-:root{
+:root {
     --timer-box-height: 30px;
+
+    --color-black: #222222;
+    --color-dark-grey: #333333;
+    --color-white: #DDDDDD;
+    --color-link: #7777FF;
+
+    --font-size-large: 2em;
+    --font-size-normal: 0.8em
 }
 
-*{
+* {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
 }
 
-body{
+html, body {
+    height: 100%;
+  }
+
+body {
     margin: 0;
 }
 
-h1{
+
+h1 {
     text-align: center;
-    margin: 0;
-    padding: 13px 0;
+    font-size: var(--font-size-large);
 }
 
-#container{
+a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+p {
+    font-size: var(--font-size-normal);
+}
+
+
+#container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-template-rows: 2fr 21fr 1fr;
+    grid-template-areas: 
+      "header header"
+      "main sidebar"
+      "footer footer";
+
+    height: 100%;
+}
+
+
+header, footer {
+    justify-self: stretch;
+    align-self: stretch;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+header {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+}
+
+main {
+    grid-area: main;
+    justify-self: stretch;
+    align-self: stretch;
+}
+
+aside {
+    grid-area: sidebar;
+
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 
-    height: 100vh;
-    padding: 8px;
+    padding: 5%;
+
+    background: var(--color-dark-grey);
+    color: var(--color-white);
 }
+
 
 #map{
-    height: 90vh;
+    height: 100%;
 }
 
-#timer{
-    text-align: center;
-    padding: 8px 0;
-}
 
-.leaflet-popup-content{
+.leaflet-popup-content {
     margin: 5px !important;
 }
-.leaflet-popup-content p{
+
+.leaflet-popup-content p {
     margin: 0 !important;
     text-align: center;
 }
 
-.status-ready p{
+
+.status-ready p {
     color: green;
     font-weight: 700; 
 }
 
-.status-emergency p{
+.status-emergency p {
     color: orange;
     font-weight: 700; 
 }
 
-.status-suspended p{
+.status-suspended p {
     color: red;
     font-weight: 700; 
 }
 
-.status-transport p{
+.status-transport p {
     color: blue;
     font-weight: 700; 
 }
 
-.status-closed{
+.status-closed {
     opacity: 0.9 !important;
 }
 .status-closed p{
     color: grey;
 }
 
-p.weather-status{
+
+p.weather-status {
     color: black;
     font-weight: 300;
     font-size: 0.9em;
 }
 
-p.mission-type-desc{
+p.mission-type-desc {
     font-weight: 400;
 }
 
-.weather-status-red p.weather-status{
+.weather-status-red p.weather-status {
     color: red;
 }
 
-.weather-status-yellow p.weather-status{
+.weather-status-yellow p.weather-status {
     color: yellowgreen;
 }
 
-.weather-status-green p.weather-status{
+.weather-status-green p.weather-status {
     color: green;
 }
 
-img{
+
+img {
     height: 21px;
 }
 
-.aircraft-name{
+.aircraft-name {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
 
     padding: 5px 0;
-}
-
-footer{
-    font-size: 0.8em;
-    text-align: center;
 }

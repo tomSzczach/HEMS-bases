@@ -11,10 +11,19 @@
 </head>
 <body>
     <div id="container">
-        <h1>Dane z baz Lotniczego Pogotowia Ratunkowego HEMS</h1>
-        <div id="timer">Aktualizacja danych za: <span id="minutes">--</span> min <span id="seconds">--</span> s</div>
-        <div id="map"></div>
-        <footer>Dane Ministerstwa Zdrowia z serwisu <a href="https://mapy.geoportal.gov.pl">Geoportal</a> - &copy 2022 <a href="https://github.com/tomSzczach">Tomasz Szcząchor</a></footer>
+        <header>
+            <h1>Dane z baz Lotniczego Pogotowia Ratunkowego HEMS</h1>
+        </header>
+        <main>
+            <div id="map"></div>
+        </main>
+        <aside>
+            <p>Aktualizacja za:</p>
+            <div id="timer"><span id="minutes">--</span> min <span id="seconds">--</span> s</div>
+        </aside>
+        <footer>
+            <p>Dane Ministerstwa Zdrowia z serwisu <a href="https://mapy.geoportal.gov.pl">Geoportal</a> - &copy <span id="year">2024</span> <a href="https://github.com/tomSzczach">Tomasz Szcząchor</a></p>
+        </footer>
     </div>
     <script src="./src/index.js"></script>
     <script src="./src/request.js"></script>
