@@ -18,7 +18,7 @@ const Timer = (json) => {
         elementsColl.forEach(el => map.removeLayer(el));
         elementsColl = [];
 
-        setTimeout(() => GetBase(json.bases), 500);
+        //setTimeout(() => GetBase(json.bases), 500);
         time = timeBetweenUpdates;
     }
 
