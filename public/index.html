@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dane z baz HEMS</title>
     <link rel="stylesheet" href="./src/main.css">
+    <link rel="stylesheet" href="./src/menu.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 </head>
 <body>
-    <div id="container">
+    <div class="container">
         <header>
             <h1>Dane z baz Lotniczego Pogotowia Ratunkowego HEMS</h1>
         </header>
@@ -18,13 +19,54 @@
             <div id="map"></div>
         </main>
         <aside>
-            <p>Aktualizacja za:</p>
-            <div id="timer"><span id="minutes">--</span> min <span id="seconds">--</span> s</div>
+            <div class="menu-button" id="menuButton">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+            </div>
+            <div class="menu" id="menu">
+                <h2>Menu</h2>
+                <div class="menu-section">
+                    <h3>Aktualizacja</h3>
+                    <div id="timer"><span id="minutes">--</span> min <span id="seconds">--</span> s</div>
+                    <div class="menu-section-option-box">
+                        <ul id="menu-update">
+                            <li class="menu-section-option">
+                                <input type="radio" id="menu-update-option-1" name="menu-update-option" value="1">
+                                <label for="menu-update-option-1">co 1 minutę</label>
+                            </li>
+                            <li class="menu-section-option">
+                                <input checked type="radio" id="menu-update-option-2" name="menu-update-option" value="5">
+                                <label for="menu-update-option-2">co 5 minut</label>
+                            </li>
+                            <li class="menu-section-option">
+                                <input type="radio" id="menu-update-option-3" name="menu-update-option" value="10">
+                                <label for="menu-update-option-3">co 10 minut</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <h3>Widoczne elementy</h3>
+                    <div class="menu-section-option-box">
+                        <ul id="menu-visibility">
+                            <li class="menu-section-option">
+                                <input checked type="checkbox" id="menu-visibility-option-1" name="menu-visibility-option" value="base">
+                                <label for="menu-visibility-option-1">bazy</label>
+                            </li>
+                            <li class="menu-section-option">
+                                <input checked type="checkbox" id="menu-visibility-option-2" name="menu-visibility-option" value="status">
+                                <label for="menu-visibility-option-2">status</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>        
+            </div>
         </aside>
         <footer>
             <p>Dane Ministerstwa Zdrowia z serwisu <a href="https://mapy.geoportal.gov.pl">Geoportal</a> - &copy <span id="year">2024</span> <a href="https://github.com/tomSzczach">Tomasz Szcząchor</a></p>
         </footer>
     </div>
+    <script src="./src/menu.js"></script>
     <script src="./src/index.js"></script>
     <script src="./src/request.js"></script>
 </body>

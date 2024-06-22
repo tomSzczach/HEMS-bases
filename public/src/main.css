@@ -1,15 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+@media screen and (max-width: 600px) {
+    :root {    
+        --font-size-large: 0.8em;
+        --font-size-semi-large: 1.2em;
+        --font-size-normal: 0.8em;
+        --font-size-small: 0.7em;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    :root {    
+        --font-size-large: 1.3em;
+        --font-size-semi-large: 1.2em;
+        --font-size-normal: 0.8em;
+        --font-size-small: 0.8em;
+    }
+}
+
 :root {
     --timer-box-height: 30px;
 
     --color-black: #222222;
     --color-dark-grey: #333333;
     --color-white: #DDDDDD;
-    --color-link: #7777FF;
-
-    --font-size-large: 2em;
-    --font-size-normal: 0.8em
+    --color-action: #7777FF;
 }
 
 * {
@@ -32,8 +47,19 @@ h1 {
     font-size: var(--font-size-large);
 }
 
+h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-semi-large);
+}
+
+h3 {
+    text-align: center;
+    font-size: var(--font-size-semi-large);
+}
+
 a {
-    color: var(--color-link);
+    color: var(--color-action);
     text-decoration: none;
 }
 
@@ -41,19 +67,23 @@ p {
     font-size: var(--font-size-normal);
 }
 
-
-#container {
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-    grid-template-rows: 2fr 21fr 1fr;
-    grid-template-areas: 
-      "header header"
-      "main sidebar"
-      "footer footer";
-
-    height: 100%;
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: none;
+    margin: 0;
 }
 
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    padding: 8px 55px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label,
+input[type="radio"]:checked + label {
+    font-weight: bold;
+    color: var(--color-action);
+}
 
 header, footer {
     justify-self: stretch;
@@ -70,10 +100,15 @@ header, footer {
 
 header {
     grid-area: header;
+
+    z-index: 999;
 }
 
 footer {
     grid-area: footer;
+
+    font-size: var(--font-size-small);
+    z-index: 999;
 }
 
 main {
@@ -83,22 +118,31 @@ main {
 }
 
 aside {
-    grid-area: sidebar;
+    grid-area: aside;
 
+    flex: 1;
     display: flex;
-    flex-direction: column;
-
-    padding: 5%;
-
-    background: var(--color-dark-grey);
-    color: var(--color-white);
+    justify-content: flex-end;
+    position: relative;
 }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 0fr;
+    grid-template-rows: 1fr 21fr 1fr;
+    grid-template-areas: 
+      "header header"
+      "main aside"
+      "footer footer";
+
+    height: 100%;
+}
+
 
 
 #map{
     height: 100%;
 }
-
 
 .leaflet-popup-content {
     margin: 5px !important;
