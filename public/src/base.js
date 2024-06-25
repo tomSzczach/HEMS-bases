@@ -65,6 +65,11 @@ class Base {
             shortName: this.#shortName,
             baseLatitude: this.#baseLatitude,
             baseLongitude: this.#baseLongitude,
+            viaLatitude: this.#viaLatitude,
+            viaLongitude: this.#viaLongitude,
+            destLatitude: this.#destLatitude,
+            destLongitude: this.#destLongitude,
+            hemsStatus: this.#hemsStatus,
             hemsStatusDescirption: this.#hemsStatusDescirption
         }
     }

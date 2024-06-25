@@ -2,7 +2,30 @@ class Map {
 
     #map = null;
     #popups = [];
+    #routes = [];
     #isPopupsShowed = true;
+    #isRoutesShowed = true;
+
+
+    #create(bases) {
+        this.#createPopups(bases);
+        this.#createRoutes(bases);
+    }
+
+    #add() {
+        this.#addPopups();
+        this.#addRoutes();
+    }
+
+    #remove() {
+        this.#removePopups();
+        this.#removeRoutes();
+    }
+
+    #delete() {
+        this.#deletePopups();
+        this.#deleteRoutes();
+    }
 
 
     #createPopup(base) {
@@ -33,7 +56,7 @@ class Map {
     }
 
     #addPopups() {
-        if (this.#isPopupsShowed) {
+        if (this.#popups.length && this.#isPopupsShowed) {
             this.#popups.forEach(popup => popup.openOn(this.#map));
         }
     }
@@ -46,6 +69,43 @@ class Map {
 
     #deletePopups() {
         this.#popups = [];
+    }
+
+
+    #createRoute(base) {
+        const { baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = base.data;
+
+        if (viaLatitude || viaLongitude || destLatitude || destLongitude) {
+            return L.polyline(
+                [[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]],
+                {color: 'red'}
+            );
+        }
+
+        return undefined;
+    }
+
+    #createRoutes(bases) {
+        this.#routes = bases
+            .map(base => this.#createRoute(base))
+            .filter(route => route !== undefined);;
+        console.log(this.#routes);
+    }
+
+    #addRoutes() {
+        if (this.#routes.length && this.#isRoutesShowed) {
+            this.#routes.forEach(route => route.addTo(this.#map));
+        }
+    }
+
+    #removeRoutes() {
+        if (this.#isRoutesShowed) {
+            this.#routes.forEach(route => this.#map.removeLayer(route));
+        }
+    }
+
+    #deleteRoutes() {
+        this.#routes = [];
     }
 
 
@@ -64,11 +124,10 @@ class Map {
 
 
     update(bases) {
-        this.#removePopups();
-        this.#deletePopups();
-        this.#createPopups(bases);
-        setTimeout(() => this.#addPopups(), 300);
-        
+        this.#remove();
+        this.#delete();
+        this.#create(bases);
+        setTimeout(() => this.#add(), 300);   
     }
 
     showBases() {
@@ -80,78 +139,14 @@ class Map {
         this.#removePopups();
         this.#isPopupsShowed = false;
     }
+
+    showRoutes() {
+        this.#isRoutesShowed = true;
+        this.#addRoutes();
+    }
+
+    hideRoutes() {
+        this.#removeRoutes();
+        this.#isRoutesShowed = false;
+    }
 }
-
-
-
-
-
-
-
-// const ShowData = (data) => {
-
-//     if( data.hemsStatus == "2"  ||
-//         data.hemsStatus == "3" ||
-//         data.hemsStatus == "4" ||
-//         data.hemsStatus == "5" ||
-//         data.hemsStatus == "6")
-//     {
-//         let route = [[data.lat, data.long]];
-
-//         if (data.flightViaLat != 0 && data.flightViaLong != 0)
-//         {
-//             route.push([data.flightViaLat, data.flightViaLong]);
-//         }
-
-//         if (data.flightToLat != 0 && data.flightToLong != 0)
-//         {
-//             route.push([data.flightToLat, data.flightToLong]);
-//         }        
-
-//         const polyline = L.polyline(
-//             [route],
-//             {color: 'red'})
-//             .addTo(map);
-
-//         elementsColl.push(polyline);
-//     }
-    
-//     const popup = L.popup({
-//         "autoClose": false,
-//         "autoPan": false,
-//         "closeButton": false,
-//         "closeOnClick": "",
-//         "closeOnEscapeKey": false,
-//         "className": `${(data.missionType == "Transport miedzyszpitalny") ? "status-transport" : StyleByHemsStatus(data.hemsStatus)}`
-//     })
-//     .setLatLng([data.lat, data.long])
-//     .setContent(`
-//         <p>${data.airport}</p>
-//         <p>${data.hemsStatusDesc}</p>
-//         <p class="mission-type-desc">${data.missionType}</p>
-//         <div class="aircraft-name">
-//             <img src="images/helicopter.jpg" alt="Helikopter:"><p>${data.aircraftName}</p>
-//         </div>
-//         <p class="weather-status">POGODA: ${data.weatherStatusDesc}</p>
-//     `)
-//     .openOn(map);
-
-//     elementsColl.push(popup);
-// }
-
-// const StyleByHemsStatus = (status) => {
-//     switch (status) {
-//         case "1": case "6":
-//             return "status-ready";   
-//         case "2": case "3": case "4": case "5":
-//             return "status-emergency";
-//         case "7":
-//             return "status-suspended";
-//         case "8":
-//             return "status-transport";
-//         case "9": case "10":
-//             return "status-closed";
-//         default:
-//             return "";
-//     }
-// }

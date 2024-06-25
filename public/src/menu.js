@@ -12,13 +12,13 @@ const handleBaseVisibility = (e) => {
     }
 }
 
-// const handleStatusVisibility = (e) => {
-//     if (e.target.checked) {
-//         map.showStatusDescription();
-//     } else {
-//         map.hideStatusDescription();
-//     }
-// }
+const handleRouteVisibility = (e) => {
+    if (e.target.checked) {
+        map.showRoutes();
+    } else {
+        map.hideRoutes();
+    }
+}
 
 
 menuButton.addEventListener('click', function() {
@@ -33,9 +33,9 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             menuVisibilityOption.addEventListener('change', e => handleBaseVisibility(e));
             break;
 
-        // case "status":
-        //     menuVisibilityOption.addEventListener('change', e => handleStatusVisibility(e));
-        //     break;
+        case "route":
+            menuVisibilityOption.addEventListener('change', e => handleRouteVisibility(e));
+            break;
     
         default:
             break;
