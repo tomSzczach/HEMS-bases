@@ -1,10 +1,31 @@
-let map = L.map('map').setView([52, 19], 6);
+const bases = new Bases();
+const map = new Map();
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoidGhvbWFzLTgzMSIsImEiOiJja3plYXk2bXgwZm9qMnducjNucG1idmdnIn0.T_DFgZuhUUTwkL7Eg3nwyw'
-}).addTo(map);
+
+const menuVisibilityOptions = document.getElementsByName('menu-visibility-option');
+
+
+const handleVisibilityOptionsChange = (e) => {
+    if (e.target.checked)
+    {
+        map.showBases();
+    }
+    else
+    {
+        map.hideBases();
+    }
+}
+
+
+menuVisibilityOptions.forEach(menuVisibilityOption => {
+    switch (menuVisibilityOption.value) {
+
+        case "base":
+            menuVisibilityOption.addEventListener('change', e => handleVisibilityOptionsChange(e));
+            break;
+    
+        default:
+            break;
+    }    
+});
+
