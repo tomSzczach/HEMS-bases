@@ -19,7 +19,7 @@ const Timer = () => {
 
     if(time == 0)
     {
-        bases.update().then(() => map.update(bases.bases)).finally(() => console.log("updated!"));
+        bases.update().then(() => map.update(bases.bases));
         time = timeToReset;
     }
     else
