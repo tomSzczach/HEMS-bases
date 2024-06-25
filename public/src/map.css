@@ -1,0 +1,52 @@
+#map{
+    height: 100%;
+}
+
+.popup-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-header p {
+    padding: 5px;
+
+    color: var(--color-black);
+    font-weight: bold;
+    font-size: var(--font-size-semi-large);
+}
+
+.popup-header img {
+    height: 18px;
+}
+
+.leaflet-popup-content {
+    margin: 5px !important;
+    min-width: 67px;
+}
+
+.leaflet-popup-content p {
+    margin: 0 !important;
+    text-align: center;
+    font-size: var(--font-size-small);
+}
+
+.status-1, .status-6 {
+    color: green;
+    font-weight: bold;
+}
+
+.status-2, .status-3, .status-4, .status-5 {
+    color: red;
+    font-weight: bold;
+}
+
+.status-8 {
+    color: blue;
+    font-weight: bold;
+}
+
+.status-10 {
+    font-weight: bold;
+}
