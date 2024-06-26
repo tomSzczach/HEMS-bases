@@ -10,52 +10,100 @@
 }
 
 .popup-header p {
-    padding: 5px;
+    padding-bottom: 3px;
 
     color: var(--color-black);
-    font-weight: bold;
-    font-size: var(--font-size-semi-large);
+    font-size: var(--font-size-large);
 }
 
 .popup-header img {
     height: 18px;
 }
 
+.popup-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content p {
+    font-size: var(--font-size-extra-large);
+}
+
+.leaflet-popup {
+    opacity: 0.89 !important;
+}
+
 .leaflet-popup-content {
-    margin: 5px !important;
-    min-width: 67px;
+    margin: 0px !important;
+    margin-top: 3px !important;
+    width: 45px !important;
 }
 
 .leaflet-popup-content p {
     margin: 0 !important;
     text-align: center;
-    font-size: var(--font-size-small);
 }
 
-.status-1, .status-6 {
+
+.status-1 p, .status-6 p {
     color: green;
     font-weight: bold;
 }
 
-.status-2, .status-3, .status-4, .status-5 {
+.leaflet-popup-content-wrapper:has(.status-1, .status-6) {
+    border-top: solid 5px green;
+}
+
+
+.status-2 p, .status-3 p, .status-4 p, .status-5 p {
     color: rgb(255, 115, 0);
     font-weight: bold;
 }
 
-.status-7 {
+.leaflet-popup-content-wrapper:has(.status-2, .status-3, .status-4, .status-5) {
+    border-top: solid 5px rgb(255, 115, 0);
+}
+
+
+.status-7 p {
     color: rgb(255, 63, 63);
     font-weight: bold;
 }
 
-.status-8 {
+.leaflet-popup-content-wrapper:has(.status-7) {
+    border-top: solid 5px rgb(255, 63, 63);
+}
+
+
+.status-8 p {
     color: blue;
     font-weight: bold;
 }
 
-.status-9 {
+.leaflet-popup-content-wrapper:has(.status-8) {
+    border-top: solid 5px blue;
+}
+
+
+.status-9 p {
     font-weight: bold;
 }
 
-.status-10 {
+.leaflet-popup-content-wrapper:has(.status-9) {
+    border-top: solid 5px var(--color-black);
+}
+
+
+.status-10 p {
     font-weight: normal;
+}
+
+.leaflet-popup-content-wrapper:has(.status-10) {
+    border-top: solid 3px var(--color-black);
+}
+
+.leaflet-popup:has(.status-) {
+    opacity: 0.55 !important;
 }

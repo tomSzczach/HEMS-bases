@@ -76,7 +76,7 @@
 .menu-section > div {
     text-align: center;
     padding-bottom: 21px;
-    font-size: var(--font-size-semi-large);
+    font-size: var(--font-size-large);
 }
 
 .menu-section-option-box ul {

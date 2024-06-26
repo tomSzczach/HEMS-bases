@@ -41,12 +41,13 @@ class Map {
         })
         .setLatLng([baseLatitude, baseLongitude])
         .setContent(`
-            <div>
+            <div class="status-${hemsStatus}">
                 <div class="popup-header">
                     <p>${shortName}</p>
-                    <img src="images/helicopter.png" alt="Helikopter:">
                 </div>
-                <p class="status-${hemsStatus}" >${(hemsStatusDescirption) ? hemsStatusDescirption : "b.d." }</p>
+                <div class="popup-content">
+                    <p>${(hemsStatus) ? hemsStatus : "b.d." }</p>
+                </div>
             </div>
         `);
     }
