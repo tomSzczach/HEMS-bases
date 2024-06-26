@@ -38,7 +38,12 @@
 }
 
 .status-2, .status-3, .status-4, .status-5 {
-    color: red;
+    color: rgb(255, 115, 0);
+    font-weight: bold;
+}
+
+.status-7 {
+    color: rgb(255, 63, 63);
     font-weight: bold;
 }
 
@@ -47,6 +52,10 @@
     font-weight: bold;
 }
 
-.status-10 {
+.status-9 {
     font-weight: bold;
+}
+
+.status-10 {
+    font-weight: normal;
 }
