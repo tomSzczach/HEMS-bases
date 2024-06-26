@@ -75,11 +75,11 @@ class Map {
     #createRoute(base) {
         const { baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = base.data;
 
-        if (viaLatitude || viaLongitude || destLatitude || destLongitude) {
-            return L.polyline(
-                [[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]],
-                {color: 'red'}
-            );
+        if (destLatitude && destLongitude)
+        {
+            return (viaLatitude && viaLongitude) ?
+                L.polyline([[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]], {color: 'red'}) :
+                L.polyline([[baseLatitude, baseLongitude], [destLatitude, destLongitude]], {color: 'red'});
         }
 
         return undefined;
