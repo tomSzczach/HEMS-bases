@@ -10,6 +10,7 @@ class Base {
     #viaLongitude = 0.0;
     #destLatitude = 0.0;
     #destLongitude = 0.0;
+    #hemsStatus = "";
     #hemsStatusDescirption = "";
 
 
@@ -46,6 +47,7 @@ class Base {
             this.#viaLongitude = parseFloat(data.querySelector('[Name="DESTINATIONLONVIA"]').textContent);
             this.#destLatitude = parseFloat(data.querySelector('[Name="DESTINATIONLAT"]').textContent);
             this.#destLongitude = parseFloat(data.querySelector('[Name="DESTINATIONLON"]').textContent);
+            this.#hemsStatus = data.querySelector('[Name="STATUS"]').textContent;
             this.#hemsStatusDescirption = data.querySelector('[Name="HEMSSTATUSDESCRIPTION"]').textContent;
         }
     }

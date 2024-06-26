@@ -29,7 +29,7 @@ class Map {
 
 
     #createPopup(base) {
-        const { shortName, baseLatitude, baseLongitude, hemsStatusDescirption } = base.data;
+        const { shortName, baseLatitude, baseLongitude, hemsStatus, hemsStatusDescirption } = base.data;
 
         return L.popup({
             "autoClose": false,
@@ -43,10 +43,10 @@ class Map {
         .setContent(`
             <div>
                 <div class="popup-header">
-                    <img src="images/helicopter.png" alt="Helikopter:">
                     <p>${shortName}</p>
+                    <img src="images/helicopter.png" alt="Helikopter:">
                 </div>
-                <p>${hemsStatusDescirption}</p>
+                <p class="status-${hemsStatus}" >${(hemsStatusDescirption) ? hemsStatusDescirption : "b.d." }</p>
             </div>
         `);
     }
@@ -88,8 +88,7 @@ class Map {
     #createRoutes(bases) {
         this.#routes = bases
             .map(base => this.#createRoute(base))
-            .filter(route => route !== undefined);;
-        console.log(this.#routes);
+            .filter(route => route !== undefined);
     }
 
     #addRoutes() {
