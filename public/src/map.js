@@ -74,11 +74,13 @@ class Map {
 
 
     #createRoute(base) {
-        const { baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = base.data;
+        const { shortName, baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = base.data;
 
-        if (destLatitude && destLongitude)
+        //console.log(`${shortName}:\n [${baseLatitude},${baseLongitude}]\n [${viaLatitude},${viaLongitude}]\n [${destLatitude},${destLongitude}]`);
+
+        if (destLatitude && destLongitude && (49.0 <= destLatitude && destLatitude <= 55.0) && (14.0 <= destLongitude && destLongitude <= 25.0))
         {
-            return (viaLatitude && viaLongitude) ?
+            return (viaLatitude && viaLongitude && (49.0 <= viaLatitude && viaLatitude <= 55.0) && (14.0 <= viaLongitude && viaLongitude <= 25.0)) ?
                 L.polyline([[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]], {color: 'red'}) :
                 L.polyline([[baseLatitude, baseLongitude], [destLatitude, destLongitude]], {color: 'red'});
         }
