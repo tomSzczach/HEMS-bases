@@ -3,8 +3,8 @@ class Map {
     #map = null;
     #popups = [];
     #routes = [];
-    #isPopupsShowed = true;
-    #isRoutesShowed = true;
+    #isPopupsShowed = LSProvider.get(LSProvider.keys.showingBases);
+    #isRoutesShowed = LSProvider.get(LSProvider.keys.showingRoutes);
 
 
     #create(bases) {

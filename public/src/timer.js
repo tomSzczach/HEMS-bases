@@ -3,13 +3,14 @@ const timerMinutes = document.getElementById("minutes");
 const timerSeconds = document.getElementById("seconds");
 
 
-let timeToReset = 300;  // default = 5 min
+let timeToReset = LSProvider.get(LSProvider.keys.updateInterval);
 let time = 0;
 let timerID = 0;
 
 
 const HandleOptionChange = (e) => {
     timeToReset = parseInt(e.target.value);
+    LSProvider.set(LSProvider.keys.updateInterval, timeToReset);
     time = timeToReset;
 }
 
@@ -31,6 +32,7 @@ const Timer = () => {
 // - - -
 
 options.forEach(option => {
+    option.checked = (parseInt(option.value) === timeToReset);
     option.addEventListener('change', HandleOptionChange);
 });
 

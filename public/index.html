@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script type="text/javascript" src="./libs/crypto-js/crypto-js.js"></script>
     <script src="./src/login.js"></script>
+    <script src="./src/localStorage.js"></script>
     <script src="./src/base.js"></script>
     <script src="./src/bases.js"></script>
     <script src="./src/map.js"></script>
@@ -41,7 +42,7 @@
                                 <label for="menu-update-option-1">co 1 minutę</label>
                             </li>
                             <li class="menu-section-option">
-                                <input checked type="radio" id="menu-update-option-2" name="menu-update-option" value="300">
+                                <input type="radio" id="menu-update-option-2" name="menu-update-option" value="300">
                                 <label for="menu-update-option-2">co 5 minut</label>
                             </li>
                             <li class="menu-section-option">
@@ -56,11 +57,11 @@
                     <div class="menu-section-option-box">
                         <ul id="menu-visibility">
                             <li class="menu-section-option">
-                                <input checked type="checkbox" id="menu-visibility-option-1" name="menu-visibility-option" value="base">
+                                <input type="checkbox" id="menu-visibility-option-1" name="menu-visibility-option" value="base">
                                 <label for="menu-visibility-option-1">bazy</label>
                             </li>
                             <li class="menu-section-option">
-                                <input checked type="checkbox" id="menu-visibility-option-2" name="menu-visibility-option" value="route">
+                                <input type="checkbox" id="menu-visibility-option-2" name="menu-visibility-option" value="route">
                                 <label for="menu-visibility-option-2">trasy</label>
                             </li>
                         </ul>
