@@ -8,6 +8,19 @@ menuButton.addEventListener('click', function() {
 
 // - - -
 
+const menuUpdateOptions = document.getElementsByName('menu-update-option');
+
+menuUpdateOptions.forEach(menuUpdateOption => {
+    menuUpdateOption.checked = (parseInt(menuUpdateOption.value) === LSProvider.get(LSProvider.keys.updateInterval));
+    menuUpdateOption.addEventListener('change', e => {
+        let updateInterval = parseInt(e.target.value);
+        timer.setUpdateInterval(updateInterval);
+        LSProvider.set(LSProvider.keys.updateInterval, updateInterval);
+    });
+});
+
+// - - -
+
 const menuVisibilityOptions = document.getElementsByName('menu-visibility-option');
 
 menuVisibilityOptions.forEach(menuVisibilityOption => {
@@ -43,8 +56,3 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             break;
     }    
 });
-
-// - - -
-
-
-

@@ -1,39 +1,37 @@
-const options = document.getElementsByName('menu-update-option');
-const timerMinutes = document.getElementById("minutes");
-const timerSeconds = document.getElementById("seconds");
+class Timer extends EventTarget {
+
+    #HTMLMinutes;
+    #HTMLSeconds;
+    #updateInterval;
+    #time;
+    #timerID;
 
 
-let timeToReset = LSProvider.get(LSProvider.keys.updateInterval);
-let time = 0;
-let timerID = 0;
+    #timer() {
+        this.#HTMLMinutes.textContent = Math.floor(this.#time/60);
+        this.#HTMLSeconds.textContent = (this.#time%60 >= 10) ? this.#time%60 : `0${this.#time%60}`;
 
-
-const HandleOptionChange = (e) => {
-    timeToReset = parseInt(e.target.value);
-    LSProvider.set(LSProvider.keys.updateInterval, timeToReset);
-    time = timeToReset;
-}
-
-const Timer = () => {
-    timerMinutes.textContent = Math.floor(time/60);
-    timerSeconds.textContent = (time%60 >= 10) ? time%60 : `0${time%60}`;
-
-    if(time == 0)
-    {
-        bases.update().then(() => map.update(bases.bases));
-        time = timeToReset;
+        if (this.#time == 0) {
+            this.dispatchEvent(new Event("timer-update"));
+            this.#time = this.#updateInterval;
+        } else {
+            this.#time--;
+        }
     }
-    else
-    {
-        time--;
+
+
+    constructor(updateInterval) {
+        super();
+        this.#HTMLMinutes = document.getElementById("minutes");
+        this.#HTMLSeconds = document.getElementById("seconds");
+        this.#updateInterval = parseInt(updateInterval);
+        this.#time = 0;
+        this.#timerID = setInterval(() => this.#timer(), 1000);;
+    }
+
+
+    setUpdateInterval(updateInterval) {
+        this.#updateInterval = parseInt(updateInterval);
+        this.#time = this.#updateInterval;
     }
 }
-
-// - - -
-
-options.forEach(option => {
-    option.checked = (parseInt(option.value) === timeToReset);
-    option.addEventListener('change', HandleOptionChange);
-});
-
-timerID = setInterval(Timer, 1000);
