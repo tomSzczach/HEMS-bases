@@ -51,6 +51,19 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
                 }
             });
             break;
+
+        case "helipad":
+            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingHelipads);
+            menuVisibilityOption.addEventListener('change', e => {
+                if (e.target.checked) {
+                    helipads.show();
+                    LSProvider.set(LSProvider.keys.showingHelipads, true);
+                } else {
+                    helipads.hide();
+                    LSProvider.set(LSProvider.keys.showingHelipads, false);
+                }
+            });
+            break;
     
         default:
             break;

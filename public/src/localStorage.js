@@ -3,13 +3,15 @@ class LSProvider {
     static #default = {
         "updateInterval": 300,
         "showingRoutes": true,
-        "showingBases": true
+        "showingBases": true,
+        "showingHelipads": true
     }
 
     static keys = {
         updateInterval: "updateInterval",
         showingRoutes: "showingRoutes",
-        showingBases: "showingBases"
+        showingBases: "showingBases",
+        showingHelipads: "showingHelipads"
     }
 
     static get(key) { 
@@ -23,6 +25,7 @@ class LSProvider {
             
             case this.keys.showingBases:
             case this.keys.showingRoutes:
+            case this.keys.showingHelipads:
                 value = (String(value).toLowerCase() === 'true');
                 break;
 

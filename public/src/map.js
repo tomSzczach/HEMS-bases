@@ -125,6 +125,11 @@ class Map {
     }
 
 
+    get mapRef() {
+        return this.#map;
+    }
+
+
     update(bases) {
         this.#remove();
         this.#delete();

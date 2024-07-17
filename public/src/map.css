@@ -38,13 +38,41 @@
 .leaflet-popup-content {
     margin: 0px !important;
     margin-top: 3px !important;
-    width: 45px !important;
+    /* width: 45px !important; */
 }
 
 .leaflet-popup-content p {
     margin: 0 !important;
     text-align: center;
 }
+
+
+
+.helipad-marker circle {
+    fill: var(--color-action);
+    stroke: #FFFFFF;
+}
+
+.helipad-marker text {
+    fill: #FFFFFF;
+    font-size: var(--font-size-extra-large);
+}
+
+.helipad-popup {
+    width: 100px;
+}
+
+.helipad-popup .popup-header p {
+    font-size: var(--font-size-large);
+    font-weight: bold;
+}
+
+.helipad-popup .popup-content p {
+    font-size: var(--font-size-normal);
+    padding: 3px;
+    padding-top: 0px;
+}
+
 
 
 .status-1 p, .status-6 p {
