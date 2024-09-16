@@ -86,22 +86,22 @@
 
 
 .status-2 p, .status-3 p, .status-4 p, .status-5 p {
-    color: rgb(255, 115, 0);
+    color: rgb(253, 146, 58);
     font-weight: bold;
 }
 
 .leaflet-popup-content-wrapper:has(.status-2, .status-3, .status-4, .status-5) {
-    border-top: solid 5px rgb(255, 115, 0);
+    border-top: solid 5px rgb(253, 146, 58);
 }
 
 
 .status-7 p {
-    color: rgb(255, 63, 63);
+    color: rgb(254, 31, 31);
     font-weight: bold;
 }
 
 .leaflet-popup-content-wrapper:has(.status-7) {
-    border-top: solid 5px rgb(255, 63, 63);
+    border-top: solid 5px rgb(254, 31, 31);
 }
 
 
