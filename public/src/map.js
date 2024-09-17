@@ -31,25 +31,24 @@ class Map {
     #createPopup(base) {
         const { shortName, baseLatitude, baseLongitude, hemsStatus, hemsStatusDescirption } = base.data;
 
-        return L.popup({
-            "autoClose": false,
-            "autoPan": false,
-            "closeButton": false,
-            "closeOnClick": "",
-            "closeOnEscapeKey": false,
-            "className": ""
-        })
-        .setLatLng([baseLatitude, baseLongitude])
-        .setContent(`
-            <div class="status-${hemsStatus}">
-                <div class="popup-header">
-                    <p>${shortName}</p>
-                </div>
-                <div class="popup-content">
-                    <p>${(hemsStatus) ? hemsStatus : "b.d." }</p>
-                </div>
-            </div>
-        `);
+        return L.marker()
+                .setLatLng([baseLatitude, baseLongitude])
+                .setOpacity(0.7)
+                .setIcon(
+                    L.divIcon({
+                        html:
+                            `<div class="content-box status-${hemsStatus}">
+                                <div class="base-name">
+                                    <p>${shortName}</p>
+                                </div>
+                                <div class="base-status">
+                                    <p>${(hemsStatus) ? hemsStatus : "b.d." }</p>
+                                </div>
+                            </div>`,
+                        iconSize: [40, 40],
+                        className: "base-marker"
+                    })
+                );
     }
 
     #createPopups(bases) {
@@ -58,7 +57,7 @@ class Map {
 
     #addPopups() {
         if (this.#popups.length && this.#isPopupsShowed) {
-            this.#popups.forEach(popup => popup.openOn(this.#map));
+            this.#popups.forEach(popup => popup.addTo(this.#map));
         }
     }
 

@@ -2,51 +2,93 @@
     height: 100%;
 }
 
-.popup-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
 
-.popup-header p {
-    padding-bottom: 3px;
-
-    color: var(--color-black);
-    font-size: var(--font-size-large);
-}
-
-.popup-header img {
-    height: 18px;
-}
-
-.popup-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.popup-content p {
-    font-size: var(--font-size-extra-large);
-}
+/* general LEAFLET POPUP */
 
 .leaflet-popup {
     opacity: 0.89 !important;
 }
 
 .leaflet-popup-content {
-    margin: 0px !important;
-    margin-top: 3px !important;
-    /* width: 45px !important; */
+    margin: 3px 0px 0px !important;
 }
 
 .leaflet-popup-content p {
     margin: 0 !important;
     text-align: center;
+} 
+
+
+/* BASE POPUP */
+
+.base-marker {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.base-marker:has(.status-1, .status-6) {
+    background-color: green;
+}
+
+.base-marker:has(.status-2, .status-3, .status-4, .status-5) {
+    background-color: rgb(253, 146, 58);
+}
+
+.base-marker:has(.status-7) {
+    background-color: rgb(254, 31, 31);
+}
+
+.base-marker:has(.status-8) {
+    background-color: blue;
+}
+
+.base-marker:has(.status-9) {
+    background-color: var(--color-black);
+}
+
+.base-marker:has(.status-10) {
+    background-color: var(--color-black);
+}
+
+.base-marker:has(.status-) {
+    background-color: var(--color-black);
+    opacity: 0.34 !important;
+}
+
+.base-marker p {
+    margin: 0;
+    text-align: center;
+}
+
+.base-marker .content-box {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    justify-items: stretch;
+    align-items: center;
+    height: 100%;
+}
+
+.base-marker .content-box .base-name {
+    background-color: #FFFFFF;
+    color: var(--color-black);
+}
+
+.base-marker .content-box .base-name p {
+    font-size: var(--font-size-normal);
+    font-weight: bold;
+}
+
+.base-marker .content-box .base-status {
+    color: var(--color-white);
+}
+
+.base-marker .content-box .base-status p {
+    font-size: var(--font-size-large);
+    font-weight: bold;
 }
 
 
+/* HELIPAD MARKER */
 
 .helipad-marker circle {
     fill: var(--color-action);
@@ -57,6 +99,9 @@
     fill: #FFFFFF;
     font-size: var(--font-size-extra-large);
 }
+
+
+/* HELIPAD POPUP */
 
 .helipad-popup {
     width: 100px;
@@ -71,67 +116,4 @@
     font-size: var(--font-size-normal);
     padding: 3px;
     padding-top: 0px;
-}
-
-
-
-.status-1 p, .status-6 p {
-    color: green;
-    font-weight: bold;
-}
-
-.leaflet-popup-content-wrapper:has(.status-1, .status-6) {
-    border-top: solid 5px green;
-}
-
-
-.status-2 p, .status-3 p, .status-4 p, .status-5 p {
-    color: rgb(253, 146, 58);
-    font-weight: bold;
-}
-
-.leaflet-popup-content-wrapper:has(.status-2, .status-3, .status-4, .status-5) {
-    border-top: solid 5px rgb(253, 146, 58);
-}
-
-
-.status-7 p {
-    color: rgb(254, 31, 31);
-    font-weight: bold;
-}
-
-.leaflet-popup-content-wrapper:has(.status-7) {
-    border-top: solid 5px rgb(254, 31, 31);
-}
-
-
-.status-8 p {
-    color: blue;
-    font-weight: bold;
-}
-
-.leaflet-popup-content-wrapper:has(.status-8) {
-    border-top: solid 5px blue;
-}
-
-
-.status-9 p {
-    font-weight: bold;
-}
-
-.leaflet-popup-content-wrapper:has(.status-9) {
-    border-top: solid 5px var(--color-black);
-}
-
-
-.status-10 p {
-    font-weight: normal;
-}
-
-.leaflet-popup-content-wrapper:has(.status-10) {
-    border-top: solid 3px var(--color-black);
-}
-
-.leaflet-popup:has(.status-) {
-    opacity: 0.55 !important;
 }

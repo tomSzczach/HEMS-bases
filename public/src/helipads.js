@@ -28,7 +28,9 @@ class Helipads {
                     }),
                     opacity: 0.55
                 }
-            ).bindPopup(
+            )
+            .setZIndexOffset(-1000)
+            .bindPopup(
                 L.popup({
                     "closeButton": false,
                     "className": "helipad-popup"
