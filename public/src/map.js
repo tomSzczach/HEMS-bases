@@ -6,6 +6,8 @@ class Map {
     #isPopupsShowed = LSProvider.get(LSProvider.keys.showingBases);
     #isRoutesShowed = LSProvider.get(LSProvider.keys.showingRoutes);
 
+    #helipadsRef = undefined;
+
 
     #create(bases) {
         this.#createPopups(bases);
@@ -79,9 +81,11 @@ class Map {
 
         if (destLatitude && destLongitude && (49.0 <= destLatitude && destLatitude <= 55.0) && (14.0 <= destLongitude && destLongitude <= 25.0))
         {
+            let color = (this.#helipadsRef !== undefined && this.#helipadsRef.existsHelipadAtLocation(destLatitude, destLongitude)) ? 'blue' : 'red';
+
             return (viaLatitude && viaLongitude && (49.0 <= viaLatitude && viaLatitude <= 55.0) && (14.0 <= viaLongitude && viaLongitude <= 25.0)) ?
-                L.polyline([[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]], {color: 'red'}) :
-                L.polyline([[baseLatitude, baseLongitude], [destLatitude, destLongitude]], {color: 'red'});
+                L.polyline([[baseLatitude, baseLongitude], [viaLatitude, viaLongitude], [destLatitude, destLongitude]], {color: color}) :
+                L.polyline([[baseLatitude, baseLongitude], [destLatitude, destLongitude]], {color: color});
         }
 
         return undefined;
@@ -154,5 +158,9 @@ class Map {
     hideRoutes() {
         this.#removeRoutes();
         this.#isRoutesShowed = false;
+    }
+
+    setHelipadsRef(helipadsRef) {
+        this.#helipadsRef = helipadsRef;
     }
 }

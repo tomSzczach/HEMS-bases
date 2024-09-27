@@ -1,6 +1,7 @@
 class Helipads {
 
     #mapRef = undefined;
+    #helipadsData = undefined;
     #helipads = [];
     #isShowed = LSProvider.get(LSProvider.keys.showingHelipads);
 
@@ -10,7 +11,7 @@ class Helipads {
 
 
     #init(helipads) {
-        this.#helipads = helipads;
+        this.#helipadsData = helipads;
 
         this.#helipads = helipads.map(helipad => {
             return L.marker(
@@ -84,6 +85,16 @@ class Helipads {
             this.#isShowed = false;
             this.#removeFromMap();
         }
+    }
+
+    existsHelipadAtLocation(latitude, longitude) {
+        const epsilon = 0.0001;
+
+        return this.#helipadsData.some(helipad => {
+            const areLatEqual = Math.abs(helipad.latitude - latitude) < epsilon;
+            const areLongEqual = Math.abs(helipad.longitude - longitude) < epsilon;
+            return areLatEqual && areLongEqual;
+        });
     }
 
 }
