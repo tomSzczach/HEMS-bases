@@ -64,7 +64,4 @@ node_modules/
 
 # dotenv environment variables file
 .env
-public/src/test.js
-public/src/hospitals.json
-public/src/helipads.json
-public/src/basesInfo.json
+public/src/dev/
