@@ -9,10 +9,10 @@ class Bases {
 
 
     constructor() {
-        fetch('src/basesInfo.txt')
+        fetch('src/data/basesInfo.txt')
             .then(response => response.text())
             .then(encryptedData => decrypt(encryptedData))
-            .then(data => this.#initBases(data.bases));
+            .then(data => this.#initBases(data));
     }
 
 

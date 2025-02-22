@@ -61,11 +61,11 @@ class Helipads {
     constructor(mapRef) {
         this.#mapRef = mapRef;
 
-        fetch('src/helipads.txt')
+        fetch('src/data/helipads.txt')
             .then(response => response.text())
             .then(encryptedData => decrypt(encryptedData))
             .then(data => {
-                this.#init(data.helipads);
+                this.#init(data);
                 if (this.#isShowed === true) {
                     this.#addOnMap();
                 }
