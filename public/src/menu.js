@@ -30,10 +30,10 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingBases);
             menuVisibilityOption.addEventListener('change', e => {
                 if (e.target.checked) {
-                    map.showBases();
                     LSProvider.set(LSProvider.keys.showingBases, true);
+                    bases.show();
                 } else {
-                    map.hideBases();
+                    bases.hide();
                     LSProvider.set(LSProvider.keys.showingBases, false);
                 }
             });
@@ -43,10 +43,10 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingRoutes);
             menuVisibilityOption.addEventListener('change', e => {
                 if (e.target.checked) {
-                    map.showRoutes();
                     LSProvider.set(LSProvider.keys.showingRoutes, true);
+                    routes.show();
                 } else {
-                    map.hideRoutes();
+                    routes.hide();
                     LSProvider.set(LSProvider.keys.showingRoutes, false);
                 }
             });
@@ -56,8 +56,8 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingHelipads);
             menuVisibilityOption.addEventListener('change', e => {
                 if (e.target.checked) {
-                    helipads.show();
                     LSProvider.set(LSProvider.keys.showingHelipads, true);
+                    helipads.show();
                 } else {
                     helipads.hide();
                     LSProvider.set(LSProvider.keys.showingHelipads, false);

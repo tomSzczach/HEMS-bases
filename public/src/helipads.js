@@ -1,60 +1,26 @@
 class Helipads {
 
+    #helipads = []
+    #views = []
     #mapRef = undefined;
-    #helipadsData = undefined;
-    #helipads = [];
-    #isShowed = LSProvider.get(LSProvider.keys.showingHelipads);
-
-    #circleBorder = 2;
-    #circleRadius = 13;
-    #circleSize = (this.#circleRadius+this.#circleBorder)*2;
 
 
-    #init(helipads) {
-        this.#helipadsData = helipads;
-
-        this.#helipads = helipads.map(helipad => {
-            return L.marker(
-                [helipad.latitude, helipad.longitude],
-                {
-                    icon: L.divIcon({
-                        html:
-                            `<svg viewBox="0 0 ${this.#circleSize} ${this.#circleSize}" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="${this.#circleSize/2}" cy="${this.#circleSize/2}" r="${this.#circleRadius}" stroke-width="${this.#circleBorder}"/>
-                                <text x="50%" y="70%" text-anchor="middle">H</text>
-                            </svg>`,
-                        iconSize: [this.#circleSize, this.#circleSize],
-                        popupAnchor: [0, -this.#circleRadius],
-                        className: "helipad-marker"
-                    }),
-                    opacity: 0.55
-                }
-            )
-            .setZIndexOffset(-1000)
-            .bindPopup(
-                L.popup({
-                    "closeButton": false,
-                    "className": "helipad-popup"
-                }).setContent(`
-                    <div>
-                        <div class="popup-header">
-                            <p>${helipad.code}</p>
-                        </div>
-                        <div class="popup-content">
-                            <p>${helipad.name}</p>
-                        </div>
-                    </div>
-                `)
-            );
-        });
+    #initHelipads(helipadsData) {
+        this.#helipads = helipadsData.map(helipadData => new Helipad(helipadData));
     }
 
-    #addOnMap() {
-        this.#helipads.forEach(helipad => helipad.addTo(this.#mapRef));
+    #initViews() {
+        this.#views = this.#helipads.map(base => base.view);
     }
 
-    #removeFromMap() {
-        this.#helipads.forEach(helipad => this.#mapRef.removeLayer(helipad));
+    #hideViews() {
+        this.#views.forEach(view => this.#mapRef.removeLayer(view));
+    }
+
+    #showViews() {
+        let areShown = LSProvider.get(LSProvider.keys.showingHelipads);
+        if (areShown)
+            this.#views.forEach(view => view.addTo(this.#mapRef));
     }
 
 
@@ -64,37 +30,17 @@ class Helipads {
         fetch('src/data/helipads.txt')
             .then(response => response.text())
             .then(encryptedData => decrypt(encryptedData))
-            .then(data => {
-                this.#init(data);
-                if (this.#isShowed === true) {
-                    this.#addOnMap();
-                }
-            });
+            .then(data => this.#initHelipads(data))
+            .then(() => this.#initViews())
+            .then(() => this.#showViews());
     }
 
 
     show() {
-        if (this.#isShowed === false) {
-            this.#isShowed = true;
-            this.#addOnMap();
-        }
+        this.#showViews();
     }
 
     hide() {
-        if (this.#isShowed === true) {
-            this.#isShowed = false;
-            this.#removeFromMap();
-        }
+        this.#hideViews();
     }
-
-    existsHelipadAtLocation(latitude, longitude) {
-        const epsilon = 0.0001;
-
-        return this.#helipadsData.some(helipad => {
-            const areLatEqual = Math.abs(helipad.latitude - latitude) < epsilon;
-            const areLongEqual = Math.abs(helipad.longitude - longitude) < epsilon;
-            return areLatEqual && areLongEqual;
-        });
-    }
-
 }

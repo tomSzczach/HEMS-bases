@@ -1,14 +1,39 @@
-class Bases {
+class Bases extends EventTarget {
 
     #bases = []
+    #views = []
+    #mapRef = undefined;
 
 
-    #initBases(bases) {
-        this.#bases = bases.map(base => new Base(base));
+    #initBases(basesData) {
+        this.#bases = basesData.map(baseData => new Base(baseData));
+    }
+
+    #updateViews() {
+        this.#views = [];
+
+        this.#bases.forEach(base => {
+            let view = base.view;
+            if (view !== undefined)
+                this.#views.push(view);
+        });
+    }
+
+    #hideViews() {
+        this.#views.forEach(view => this.#mapRef.removeLayer(view));
+    }
+
+    #showViews() {
+        let areShown = LSProvider.get(LSProvider.keys.showingBases);
+        if (areShown)
+            this.#views.forEach(view => view.addTo(this.#mapRef));
     }
 
 
-    constructor() {
+    constructor(mapRef) {
+        super();
+        this.#mapRef = mapRef;
+
         fetch('src/data/basesInfo.txt')
             .then(response => response.text())
             .then(encryptedData => decrypt(encryptedData))
@@ -16,13 +41,33 @@ class Bases {
     }
 
 
-    get bases() {
-        return this.#bases;
+    get missionsData() {
+        return this.#bases
+        .map(base => base.mission)
+        .filter(mission => mission !== undefined);
     }
 
 
     update() {
         const updatePromises = this.#bases.map(base => base.update());
-        return Promise.all(updatePromises);
+        Promise.all(updatePromises)
+            .finally(() => this.dispatchEvent(new Event("bases-updated")))
+            .finally(() => {
+                this.#hideViews();
+                this.#updateViews();
+                setTimeout(() => 
+                    this.#showViews(), 
+                    300
+                );
+            }
+        );
+    }
+
+    show() {
+        this.#showViews();
+    }
+
+    hide() {
+        this.#hideViews();
     }
 }

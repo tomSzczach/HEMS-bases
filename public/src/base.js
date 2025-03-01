@@ -1,17 +1,22 @@
 class Base {
     
-    #city = "";
-    #aircraftName = "";
-    #shortName = "";
-    #url = "";
-    #baseLatitude = 0.0;
-    #baseLongitude = 0.0;
-    #viaLatitude = 0.0;
-    #viaLongitude = 0.0;
-    #destLatitude = 0.0;
-    #destLongitude = 0.0;
-    #hemsStatus = "";
-    #hemsStatusDescirption = "";
+    #url = undefined;
+
+    #isValid = false;
+
+    #model = {
+        city: undefined,
+        aircraftName: undefined,
+        shortName: undefined,
+        baseLatitude: undefined,
+        baseLongitude: undefined,
+        viaLatitude: undefined,
+        viaLongitude: undefined,
+        destLatitude: undefined,
+        destLongitude: undefined,
+        hemsStatus: undefined,
+        hemsStatusDescirption: undefined
+    };
 
 
     #fetchData() {
@@ -38,48 +43,88 @@ class Base {
         });
     }
 
+    #validateCoord(value) {
+        return (isNaN(value) || value === 0) ? undefined : value;
+    }
+
     #updateData(data) {
         if (data)
         {
-            this.#baseLatitude = parseFloat(data.querySelector('[Name="LATITUDE"]').textContent);
-            this.#baseLongitude = parseFloat(data.querySelector('[Name="LONGITUDE"]').textContent);
-            this.#viaLatitude = parseFloat(data.querySelector('[Name="DESTINATIONLATVIA"]').textContent);
-            this.#viaLongitude = parseFloat(data.querySelector('[Name="DESTINATIONLONVIA"]').textContent);
-            this.#destLatitude = parseFloat(data.querySelector('[Name="DESTINATIONLAT"]').textContent);
-            this.#destLongitude = parseFloat(data.querySelector('[Name="DESTINATIONLON"]').textContent);
-            this.#hemsStatus = data.querySelector('[Name="STATUS"]').textContent;
-            this.#hemsStatusDescirption = data.querySelector('[Name="HEMSSTATUSDESCRIPTION"]').textContent;
+            this.#model.baseLatitude = this.#validateCoord(parseFloat(data.querySelector('[Name="LATITUDE"]').textContent));
+            this.#model.baseLongitude = this.#validateCoord(parseFloat(data.querySelector('[Name="LONGITUDE"]').textContent));
+            this.#model.viaLatitude = this.#validateCoord(parseFloat(data.querySelector('[Name="DESTINATIONLATVIA"]').textContent));
+            this.#model.viaLongitude = this.#validateCoord(parseFloat(data.querySelector('[Name="DESTINATIONLONVIA"]').textContent));
+            this.#model.destLatitude = this.#validateCoord(parseFloat(data.querySelector('[Name="DESTINATIONLAT"]').textContent));
+            this.#model.destLongitude = this.#validateCoord(parseFloat(data.querySelector('[Name="DESTINATIONLON"]').textContent));
+            this.#model.hemsStatus = data.querySelector('[Name="STATUS"]').textContent;
+            this.#model.hemsStatusDescirption = data.querySelector('[Name="HEMSSTATUSDESCRIPTION"]').textContent;
+            this.#isValid = true;
+        }
+        else
+        {
+            this.#isValid = false;
         }
     }
 
 
     constructor(baseInfo) {
-        this.#city = baseInfo.city;
-        this.#aircraftName = baseInfo.aircraftName;
-        this.#shortName = baseInfo.aircraftName.replace(/Ratownik (\d+)/, 'R-$1');
         this.#url = baseInfo.url;
+
+        this.#model.city = baseInfo.city;
+        this.#model.aircraftName = baseInfo.aircraftName;
+        this.#model.shortName = baseInfo.aircraftName.replace(/Ratownik (\d+)/, 'R-$1');
     }
 
 
-    get data() {
-        return {
-            aircraftName: this.#aircraftName,
-            shortName: this.#shortName,
-            baseLatitude: this.#baseLatitude,
-            baseLongitude: this.#baseLongitude,
-            viaLatitude: this.#viaLatitude,
-            viaLongitude: this.#viaLongitude,
-            destLatitude: this.#destLatitude,
-            destLongitude: this.#destLongitude,
-            hemsStatus: this.#hemsStatus,
-            hemsStatusDescirption: this.#hemsStatusDescirption
-        }
+    get mission() {
+        const { destLatitude, destLongitude } = this.#model;
+
+        return (destLatitude && destLongitude) ? 
+            {
+                shortName: this.#model.shortName,
+                baseLatitude: this.#model.baseLatitude,
+                baseLongitude: this.#model.baseLongitude,
+                viaLatitude: this.#model.viaLatitude,
+                viaLongitude: this.#model.viaLongitude,
+                destLatitude: this.#model.destLatitude,
+                destLongitude: this.#model.destLongitude
+            }
+        : undefined;
+    }
+
+    get view() {
+        if (!this.#isValid)
+            return undefined;
+
+        const { shortName, baseLatitude, baseLongitude, hemsStatus } = this.#model;
+
+        return L.marker()
+                .setLatLng([baseLatitude, baseLongitude])
+                .setOpacity(0.7)
+                .setIcon(
+                    L.divIcon({
+                        html:
+                            `<div class="content-box status-${hemsStatus}">
+                                <div class="base-name">
+                                    <p>${shortName}</p>
+                                </div>
+                                <div class="base-status">
+                                    <p>${(hemsStatus) ? hemsStatus : "b.d." }</p>
+                                </div>
+                            </div>`,
+                        iconSize: [40, 40],
+                        className: "base-marker"
+                    })
+                );
     }
 
 
     update() {
         return this.#fetchData()
             .then(data => this.#updateData(data))
-            .catch(err => console.error(err));       
+            .catch(err => {
+                console.error(err);
+                this.#isValid = false;
+            });       
     }
 }
