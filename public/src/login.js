@@ -7,10 +7,7 @@ const decrypt = (ciphertext) => {
         const json = JSON.parse(originalText);
         return json;
     } catch (error) {
-        return {
-            "bases": [], 
-            "helipads": []
-        };
+        return {};
     }
 }
 
