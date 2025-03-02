@@ -64,6 +64,19 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
                 }
             });
             break;
+
+        case "voivodeship":
+            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingVoivodeships);
+            menuVisibilityOption.addEventListener('change', e => {
+                if (e.target.checked) {
+                    LSProvider.set(LSProvider.keys.showingVoivodeships, true);
+                    voivodeships.show();
+                } else {
+                    voivodeships.hide();
+                    LSProvider.set(LSProvider.keys.showingVoivodeships, false);
+                }
+            });
+            break;
     
         default:
             break;
