@@ -2,7 +2,7 @@ class LSProvider {
 
     static #default = {
         "updateInterval": 300,
-        "showingRoutes": true,
+        "showingMissions": true,
         "showingBases": true,
         "showingHelipads": true,
         "showingVoivodeships": true
@@ -10,7 +10,7 @@ class LSProvider {
 
     static keys = {
         updateInterval: "updateInterval",
-        showingRoutes: "showingRoutes",
+        showingMissions: "showingMissions",
         showingBases: "showingBases",
         showingHelipads: "showingHelipads",
         showingVoivodeships: "showingVoivodeships"
@@ -26,7 +26,7 @@ class LSProvider {
                 break;
             
             case this.keys.showingBases:
-            case this.keys.showingRoutes:
+            case this.keys.showingMissions:
             case this.keys.showingHelipads:
             case this.keys.showingVoivodeships:
                 value = (String(value).toLowerCase() === 'true');

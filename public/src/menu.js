@@ -39,15 +39,15 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             });
             break;
 
-        case "route":
-            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingRoutes);
+        case "mission":
+            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingMissions);
             menuVisibilityOption.addEventListener('change', e => {
                 if (e.target.checked) {
-                    LSProvider.set(LSProvider.keys.showingRoutes, true);
-                    routes.show();
+                    LSProvider.set(LSProvider.keys.showingMissions, true);
+                    missions.show();
                 } else {
-                    routes.hide();
-                    LSProvider.set(LSProvider.keys.showingRoutes, false);
+                    missions.hide();
+                    LSProvider.set(LSProvider.keys.showingMissions, false);
                 }
             });
             break;
