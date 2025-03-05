@@ -98,19 +98,18 @@ header, footer {
 
     background: var(--color-black);
     color: var(--color-white);
+
+    z-index: 1001;
 }
 
 header {
     grid-area: header;
-
-    z-index: 999;
 }
 
 footer {
     grid-area: footer;
 
     font-size: var(--font-size-small);
-    z-index: 999;
 }
 
 main {

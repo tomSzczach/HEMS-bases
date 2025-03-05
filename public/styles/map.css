@@ -16,7 +16,12 @@
 .leaflet-popup-content p {
     margin: 0 !important;
     text-align: center;
-} 
+}
+
+/* general LEAFLET ZOOM */
+.leaflet-control-zoom {
+    top: 21px;
+}
 
 
 /* BASE POPUP */
@@ -137,4 +142,21 @@
     font-size: var(--font-size-normal);
     padding: 3px;
     padding-top: 0px;
+}
+
+/* LAST UPDATE TIME BANNER */
+
+.last-update-banner {
+    background: #FFFFFFAA;
+    position: absolute;
+    width: -webkit-fill-available;
+    text-align: center;
+    color: black;
+    z-index: 1000;
+    padding: 3px;
+    font-size: var(--font-size-small);
+}
+
+.last-update-banner > #last-update {
+    font-weight: bold;
 }

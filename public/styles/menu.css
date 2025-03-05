@@ -4,7 +4,7 @@
     justify-content: center;
 
     position: absolute;
-    top: 13px;
+    top: 34px;
     right: 13px;
     width: 55px;
     height: 55px;
@@ -14,7 +14,7 @@
 
     border-radius: 50%;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .menu-button .bar1,
@@ -57,7 +57,7 @@
     background: var(--color-dark-grey);
     color: var(--color-white);
 
-    z-index: 998;
+    z-index: 1000;
     transition: right 0.3s ease;
 }
 
