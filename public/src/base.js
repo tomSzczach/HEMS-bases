@@ -15,7 +15,8 @@ class Base {
         destLatitude: undefined,
         destLongitude: undefined,
         hemsStatus: undefined,
-        hemsStatusDescirption: undefined
+        hemsStatusDescirption: undefined,
+        weatherStatus: undefined
     };
 
 
@@ -58,6 +59,7 @@ class Base {
             this.#model.destLongitude = this.#validateCoord(parseFloat(data.querySelector('[Name="DESTINATIONLON"]').textContent));
             this.#model.hemsStatus = data.querySelector('[Name="STATUS"]').textContent;
             this.#model.hemsStatusDescirption = data.querySelector('[Name="HEMSSTATUSDESCRIPTION"]').textContent;
+            this.#model.weatherStatus = data.querySelector('[Name="WEATHER"]').textContent;
             this.#isValid = true;
         }
         else
@@ -96,7 +98,7 @@ class Base {
         if (!this.#isValid)
             return undefined;
 
-        const { shortName, baseLatitude, baseLongitude, hemsStatus } = this.#model;
+        const { shortName, baseLatitude, baseLongitude, hemsStatus, weatherStatus } = this.#model;
 
         return L.marker()
                 .setLatLng([baseLatitude, baseLongitude])
@@ -104,7 +106,7 @@ class Base {
                 .setIcon(
                     L.divIcon({
                         html:
-                            `<div class="content-box status-${hemsStatus}">
+                            `<div class="content-box status-${hemsStatus} weather-${weatherStatus}">
                                 <div class="base-name">
                                     <p>${shortName}</p>
                                 </div>

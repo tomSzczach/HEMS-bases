@@ -23,6 +23,7 @@
 
 .base-marker {
     border-radius: 5px;
+    border: 3px solid;
     overflow: hidden;
 }
 
@@ -57,6 +58,22 @@
 .base-marker:has(.status-) {
     background-color: var(--color-black);
     opacity: 0.21 !important;
+}
+
+.base-marker:has(.weather-) {
+    border-color: var(--color-black);
+}
+
+.base-marker:has(.weather-0) {
+    border-color: #CC0033;
+}
+
+.base-marker:has(.weather-1) {
+    border-color: #FFFF00;
+}
+
+.base-marker:has(.weather-2) {
+    border-color: #009933;
 }
 
 .base-marker p {
