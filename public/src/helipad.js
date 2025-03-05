@@ -18,6 +18,10 @@ class Helipad {
     }
 
 
+    get coordinates() {
+        return L.latLng(this.#model.latitude, this.#model.longitude);
+    }
+
     get view() {
         const { latitude, longitude, code, name } = this.#model;
 

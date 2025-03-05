@@ -2,7 +2,7 @@ const map = new Map();
 
 const bases = new Bases(map.mapRef);
 const helipads = new Helipads(map.mapRef);
-const missions = new Missions(map.mapRef);
+const missions = new Missions(map.mapRef, helipads);
 const voivodeships = new Voivodeships(map.mapRef);
 
 const timer = new Timer(LSProvider.get(LSProvider.keys.updateInterval));

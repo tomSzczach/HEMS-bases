@@ -3,6 +3,7 @@ class Missions {
     #missions = []
     #views = []
     #mapRef = undefined;
+    #helipadsRef = undefined;
 
 
     #hideViews() {
@@ -14,11 +15,12 @@ class Missions {
     }
 
     #createView(mission) {
-        const { baseLatitude, baseLongitude, destLatitude, destLongitude } = mission;
+        const { baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = mission;
         const { name, city, town, village, municipality, county } = mission.destInfo;
 
         const missionView = L.featureGroup();
         const baseCoords = L.latLng(baseLatitude, baseLongitude);
+        const viaCoords = L.latLng(viaLatitude, viaLongitude);
         const destCoords = L.latLng(destLatitude, destLongitude);
 
         const degN = destLatitude.toFixed(5);
@@ -28,8 +30,9 @@ class Missions {
         const speed = 240; // in km/h
         const time = (distance / speed * 60).toFixed(0); // in minutes
 
-        const route = L
-            .polyline([baseCoords, destCoords]);
+        const route = (viaLatitude && viaLongitude)
+            ? L.polyline([baseCoords, viaCoords, destCoords])
+            : L.polyline([baseCoords, destCoords]);
         
         const destMarker = L
             .marker(destCoords)
@@ -79,26 +82,43 @@ class Missions {
         }
     }
 
+    #findViaPoint(mission) {
+        const possibleViaHelipads = this.#helipadsRef.placedAtLatitude(mission.viaLatitude);
 
-    constructor(mapRef) {
+        if (possibleViaHelipads.length === 0)
+            return;
+
+        const closestHelipad = possibleViaHelipads.reduce((closest, helipadCoords) => {
+            const baseCoords = L.latLng(mission.baseLatitude, mission.baseLongitude);
+            const distanceToHelipad = baseCoords.distanceTo(helipadCoords);
+
+            if (!closest || distanceToHelipad < closest.distance) {
+                return { helipadCoords, distance: distanceToHelipad };
+            }
+
+            return closest;
+        }, null);
+
+        if (closestHelipad) {
+            mission.viaLatitude = closestHelipad.helipadCoords.lat;
+            mission.viaLongitude = closestHelipad.helipadCoords.lng;
+        } else {
+            mission.viaLatitude = 0;
+            mission.viaLongitude = 0;
+        }
+    }
+
+
+    constructor(mapRef, helipadsRef) {
         this.#mapRef = mapRef;
+        this.#helipadsRef = helipadsRef;
     }
 
 
     async update(missions) {
-        console.log(missions);
-        missions.push({
-            shortName: "R-15",
-            baseLatitude: 51.9788889,
-            baseLongitude: 15.4638889,
-            viaLatitude: undefined,
-            viaLongitude: undefined,
-            destLatitude: 51.6347222222222,
-            destLongitude: 15.1552777777778
-        });
-
         missions.forEach(mission => {
-            mission.viaLatitude = mission.viaLongitude = undefined;
+            if (mission.viaLatitude !== undefined)
+                this.#findViaPoint(mission)
         });
 
         this.#missions = await Promise.all(
