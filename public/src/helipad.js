@@ -42,7 +42,7 @@ class Helipad {
                         popupAnchor: [0, -circleRadius],
                         className: "helipad-marker"
                     }),
-                    opacity: 0.55
+                    opacity: 0.34
                 })
                 .setZIndexOffset(-1000)
                 .bindPopup(
