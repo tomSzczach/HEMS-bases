@@ -100,7 +100,7 @@ class Base {
 
         return L.marker()
                 .setLatLng([baseLatitude, baseLongitude])
-                .setOpacity(0.7)
+                .setOpacity(0.89)
                 .setIcon(
                     L.divIcon({
                         html:

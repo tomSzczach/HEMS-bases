@@ -26,33 +26,37 @@
     overflow: hidden;
 }
 
-.base-marker:has(.status-1, .status-6) {
-    background-color: green;
+.base-marker:has(.status-1) {
+    background-color: #66CC00;
 }
 
 .base-marker:has(.status-2, .status-3, .status-4, .status-5) {
-    background-color: rgb(253, 146, 58);
+    background-color: #FFCC00;
+}
+
+.base-marker:has(.status-6) {
+    background-color: #00FF00;
 }
 
 .base-marker:has(.status-7) {
-    background-color: rgb(254, 31, 31);
+    background-color: #FF0033;
 }
 
 .base-marker:has(.status-8) {
-    background-color: blue;
+    background-color: #C0C0C0;
 }
 
 .base-marker:has(.status-9) {
-    background-color: var(--color-black);
+    background-color: #FF0099;
 }
 
 .base-marker:has(.status-10) {
-    background-color: var(--color-black);
+    background-color: #808080;
 }
 
 .base-marker:has(.status-) {
     background-color: var(--color-black);
-    opacity: 0.34 !important;
+    opacity: 0.21 !important;
 }
 
 .base-marker p {
