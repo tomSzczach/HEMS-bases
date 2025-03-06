@@ -95,7 +95,6 @@ class Missions {
             const response = await fetch(url);
             const data = await response.json();
 
-            console.log(data);
             const { name } = data;
             const { city, town, village, municipality, county } = data.address;
             return { name, city, town, village, municipality, county };
@@ -139,26 +138,6 @@ class Missions {
 
 
     async update(missions) {
-        missions.push({
-            shortName: "R-15",
-            baseLatitude: 51.9788889,
-            baseLongitude: 15.4638889,
-            viaLatitude: 52.43,
-            viaLongitude: undefined,
-            destLatitude: 51.6347222222222,
-            destLongitude: 15.1552777777778
-        });
-        missions.push({
-            shortName: "R-15",
-            baseLatitude: 51.9788889,
-            baseLongitude: 15.4638889,
-            viaLatitude: undefined,
-            viaLongitude: undefined,
-            destLatitude: 52.13915,
-            destLongitude: 21.00821
-        });
-
-        console.log(missions);
 
         missions.forEach(mission => {
             if (mission.viaLatitude !== undefined)
