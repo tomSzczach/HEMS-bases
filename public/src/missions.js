@@ -23,6 +23,9 @@ class Missions {
         const viaCoords = L.latLng(viaLatitude, viaLongitude);
         const destCoords = L.latLng(destLatitude, destLongitude);
 
+        const isViaPoint = viaLatitude && viaLongitude;
+        const viewColor = isViaPoint ? '#0000FF' : '#FF0000';
+
         const degN = destLatitude.toFixed(5);
         const degE = destLongitude.toFixed(5);
 
@@ -30,25 +33,44 @@ class Missions {
         const speed = 240; // in km/h
         const time = (distance / speed * 60).toFixed(0); // in minutes
 
-        const route = (viaLatitude && viaLongitude)
+        const route = (isViaPoint)
             ? L.polyline([baseCoords, viaCoords, destCoords])
             : L.polyline([baseCoords, destCoords]);
+
+        route.setStyle({ color: viewColor });
         
         const destMarker = L
-            .marker(destCoords)
+            .circleMarker(destCoords, {
+                radius: 5,
+                color: viewColor,
+                fillColor: viewColor,
+                fillOpacity: 1
+            })
             .bindPopup(
                 L.popup({
                     "closeButton": false,
                     "className": "destination-popup"
                 }).setContent(`
                     <div>
-                        <p><b>Cel:</b></p>
-                        <p>${degN}°N, ${degE}°E</p>
-                        <p>${city || town || village || municipality || county}${name ? ` (${name})` : ''}</p>
-                        <p><b>Dystans:</b></p>
-                        <p>~ ${distance} km</p>
-                        <p><b>Czas przelotu:</b></p>
-                        <p>~ ${time} min</p>
+                        <div class="popup-header">
+                            <p>Cel:</p>
+                        </div>
+                        <div class="popup-content">
+                            <p class="coords">${degN}°N, ${degE}°E</p>
+                            <p>${city || town || village || municipality || county}${name ? ` (${name})` : ''}</p>
+                        </div>
+                        <div class="popup-header">
+                            <p>Dystans:</p>
+                        </div>
+                        <div class="popup-content">
+                            <p>~ ${distance} km</p>
+                        </div>
+                        <div class="popup-header">
+                            <p>Czas przelotu:</p>
+                        </div>
+                        <div class="popup-content">
+                            <p>~ ${time} min</p>
+                        </div>                        
                     </div>
                 `)
             );
@@ -73,6 +95,7 @@ class Missions {
             const response = await fetch(url);
             const data = await response.json();
 
+            console.log(data);
             const { name } = data;
             const { city, town, village, municipality, county } = data.address;
             return { name, city, town, village, municipality, county };
@@ -124,6 +147,15 @@ class Missions {
             viaLongitude: undefined,
             destLatitude: 51.6347222222222,
             destLongitude: 15.1552777777778
+        });
+        missions.push({
+            shortName: "R-15",
+            baseLatitude: 51.9788889,
+            baseLongitude: 15.4638889,
+            viaLatitude: undefined,
+            viaLongitude: undefined,
+            destLatitude: 52.13915,
+            destLongitude: 21.00821
         });
 
         console.log(missions);

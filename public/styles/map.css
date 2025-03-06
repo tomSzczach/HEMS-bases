@@ -19,6 +19,7 @@
 }
 
 /* general LEAFLET ZOOM */
+
 .leaflet-control-zoom {
     top: 21px;
 }
@@ -142,6 +143,23 @@
     font-size: var(--font-size-normal);
     padding: 3px;
     padding-top: 0px;
+}
+
+/* DESTINATION MARKER */
+
+.destination-popup .popup-header p {
+    font-size: var(--font-size-semi-large);
+    font-weight: bold;
+}
+
+.destination-popup .popup-content p {
+    font-size: var(--font-size-normal);
+    padding: 3px;
+    padding-top: 0px;
+}
+
+.destination-popup .popup-content p.coords {
+    font-style: italic;
 }
 
 /* LAST UPDATE TIME BANNER */
