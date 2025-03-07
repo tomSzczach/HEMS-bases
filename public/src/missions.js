@@ -125,8 +125,8 @@ class Missions {
             mission.viaLatitude = closestHelipad.helipadCoords.lat;
             mission.viaLongitude = closestHelipad.helipadCoords.lng;
         } else {
-            mission.viaLatitude = 0;
-            mission.viaLongitude = 0;
+            mission.viaLatitude = undefined;
+            mission.viaLongitude = undefined;
         }
     }
 
