@@ -90,6 +90,19 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
                 }
             });
             break;
+
+        case "weatherRadar":
+            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingWeatherRadar);
+            menuVisibilityOption.addEventListener('change', e => {
+                if (e.target.checked) {
+                    LSProvider.set(LSProvider.keys.showingWeatherRadar, true);
+                    weatherRadar.show();
+                } else {
+                    weatherRadar.hide();
+                    LSProvider.set(LSProvider.keys.showingWeatherRadar, false);
+                }
+            });
+            break;
     
         default:
             break;

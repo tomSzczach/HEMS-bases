@@ -6,7 +6,8 @@ class LSProvider {
         "showingBases": true,
         "showingHelipads": true,
         "showingCTRs": true,
-        "showingVoivodeships": true
+        "showingVoivodeships": true,
+        "showingWeatherRadar": true
     }
 
     static keys = {
@@ -15,7 +16,8 @@ class LSProvider {
         showingBases: "showingBases",
         showingHelipads: "showingHelipads",
         showingCTRs: "showingCTRs",
-        showingVoivodeships: "showingVoivodeships"
+        showingVoivodeships: "showingVoivodeships",
+        showingWeatherRadar: "showingWeatherRadar"
     }
 
     static get(key) { 
@@ -32,6 +34,7 @@ class LSProvider {
             case this.keys.showingHelipads:
             case this.keys.showingCTRs:
             case this.keys.showingVoivodeships:
+            case this.keys.showingWeatherRadar:
                 value = (String(value).toLowerCase() === 'true');
                 break;
 
