@@ -45,6 +45,7 @@
 .menu {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 
     position: fixed;
     top: 0;
@@ -69,8 +70,6 @@
 .menu-section {
     display: flex;
     flex-direction: column;
-
-    padding-top: 21px;
 }
 
 .menu-section > div {
