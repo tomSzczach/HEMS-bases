@@ -65,6 +65,19 @@ menuVisibilityOptions.forEach(menuVisibilityOption => {
             });
             break;
 
+        case "ctr":
+            menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingCTRs);
+            menuVisibilityOption.addEventListener('change', e => {
+                if (e.target.checked) {
+                    LSProvider.set(LSProvider.keys.showingCTRs, true);
+                    controlZones.show();
+                } else {
+                    controlZones.hide();
+                    LSProvider.set(LSProvider.keys.showingCTRs, false);
+                }
+            });
+            break;
+
         case "voivodeship":
             menuVisibilityOption.checked = LSProvider.get(LSProvider.keys.showingVoivodeships);
             menuVisibilityOption.addEventListener('change', e => {

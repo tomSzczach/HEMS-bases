@@ -5,6 +5,7 @@ class LSProvider {
         "showingMissions": true,
         "showingBases": true,
         "showingHelipads": true,
+        "showingCTRs": true,
         "showingVoivodeships": true
     }
 
@@ -13,6 +14,7 @@ class LSProvider {
         showingMissions: "showingMissions",
         showingBases: "showingBases",
         showingHelipads: "showingHelipads",
+        showingCTRs: "showingCTRs",
         showingVoivodeships: "showingVoivodeships"
     }
 
@@ -28,6 +30,7 @@ class LSProvider {
             case this.keys.showingBases:
             case this.keys.showingMissions:
             case this.keys.showingHelipads:
+            case this.keys.showingCTRs:
             case this.keys.showingVoivodeships:
                 value = (String(value).toLowerCase() === 'true');
                 break;
