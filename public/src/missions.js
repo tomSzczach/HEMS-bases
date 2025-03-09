@@ -16,36 +16,55 @@ class Missions {
 
     #createView(mission) {
         const { baseLatitude, baseLongitude, viaLatitude, viaLongitude, destLatitude, destLongitude } = mission;
-        const { name, city, town, village, municipality, county } = mission.destInfo;
 
-        const missionView = L.featureGroup();
+        const helicopterVelocity = 240; // in km/h
+
         const baseCoords = L.latLng(baseLatitude, baseLongitude);
-        const viaCoords = L.latLng(viaLatitude, viaLongitude);
         const destCoords = L.latLng(destLatitude, destLongitude);
 
         const isViaPoint = viaLatitude && viaLongitude;
-        const viewColor = isViaPoint ? '#0000FF' : '#FF0000';
 
-        const degN = destLatitude.toFixed(5);
-        const degE = destLongitude.toFixed(5);
+        if (isViaPoint) {
+            const viaCoords = L.latLng(viaLatitude, viaLongitude);
 
-        const distance = (baseCoords.distanceTo(destCoords) / 1000).toFixed(0); // in km
-        const speed = 240; // in km/h
-        const time = (distance / speed * 60).toFixed(0); // in minutes
+            const distanceToVia = (baseCoords.distanceTo(viaCoords) / 1000).toFixed(0); // in km
+            const distanceToDest = (parseFloat(distanceToVia) + (viaCoords.distanceTo(destCoords) / 1000)).toFixed(0); // in km
+            const timeToVia = (distanceToVia / helicopterVelocity * 60).toFixed(0); // in minutes
+            const timeToDest = (distanceToDest / helicopterVelocity * 60).toFixed(0); // in minutes
 
-        const route = (isViaPoint)
-            ? L.polyline([baseCoords, viaCoords, destCoords])
-            : L.polyline([baseCoords, destCoords]);
+            const route = L.polyline([baseCoords, viaCoords, destCoords]);
+            route.setStyle({ color: '#0000FF' });
 
-        route.setStyle({ color: viewColor });
-        
-        const destMarker = L
-            .circleMarker(destCoords, {
-                radius: 5,
-                color: viewColor,
-                fillColor: viewColor,
-                fillOpacity: 1
-            })
+            const viaMarker = this.#buildMarker(viaCoords, mission.viaInfo, distanceToVia, timeToVia);
+            const destMarker = this.#buildMarker(destCoords, mission.destInfo, distanceToDest, timeToDest);
+
+            return L.featureGroup()
+                .addLayer(route)
+                .addLayer(viaMarker)
+                .addLayer(destMarker);
+        }
+        else {
+            const distanceToDest = (baseCoords.distanceTo(destCoords) / 1000).toFixed(0); // in km
+            const timeToDest = (distanceToDest / helicopterVelocity * 60).toFixed(0); // in minutes
+
+            const route = L.polyline([baseCoords, destCoords]);
+            route.setStyle({ color: '#FF0000' });
+
+            const destMarker = this.#buildMarker(destCoords, mission.destInfo, distanceToDest, timeToDest);
+
+            return L.featureGroup()
+                .addLayer(route)
+                .addLayer(destMarker);
+        }
+    }
+
+    #buildMarker(coords, placeInfo, distance, time) {
+        const { name, city, town, village, municipality, county } = placeInfo;
+        const degN = coords.lat.toFixed(5);
+        const degE = coords.lng.toFixed(5);
+
+        return L
+            .marker(coords)
             .bindPopup(
                 L.popup({
                     "closeButton": false,
@@ -74,12 +93,6 @@ class Missions {
                     </div>
                 `)
             );
-
-        missionView
-            .addLayer(route)
-            .addLayer(destMarker);
-
-        return missionView;
     }
 
     #showViews() {
@@ -88,8 +101,8 @@ class Missions {
             this.#views.forEach(view => view.addTo(this.#mapRef));
     }
 
-    async #getDestinationInfo([destLat, destLon]) {
-        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${destLat}&lon=${destLon}`;
+    async #getPlaceInfo([lat, lon]) {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
 
         try {
             const response = await fetch(url);
@@ -114,9 +127,11 @@ class Missions {
     async update(missions) {
         this.#missions = await Promise.all(
             missions.map(async mission => {
+                const isViaPoint = mission.viaLatitude && mission.viaLongitude;
                 return {
                     ...mission,
-                    destInfo: await this.#getDestinationInfo([mission.destLatitude, mission.destLongitude])
+                    viaInfo: isViaPoint ? await this.#getPlaceInfo([mission.viaLatitude, mission.viaLongitude]) : {},
+                    destInfo: await this.#getPlaceInfo([mission.destLatitude, mission.destLongitude])
                 };
             })
         );
