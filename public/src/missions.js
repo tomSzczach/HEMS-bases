@@ -104,32 +104,6 @@ class Missions {
         }
     }
 
-    #findViaPoint(mission) {
-        const possibleViaHelipads = this.#helipadsRef.placedAtLatitude(mission.viaLatitude);
-
-        if (possibleViaHelipads.length === 0)
-            return;
-
-        const closestHelipad = possibleViaHelipads.reduce((closest, helipadCoords) => {
-            const baseCoords = L.latLng(mission.baseLatitude, mission.baseLongitude);
-            const distanceToHelipad = baseCoords.distanceTo(helipadCoords);
-
-            if (!closest || distanceToHelipad < closest.distance) {
-                return { helipadCoords, distance: distanceToHelipad };
-            }
-
-            return closest;
-        }, null);
-
-        if (closestHelipad) {
-            mission.viaLatitude = closestHelipad.helipadCoords.lat;
-            mission.viaLongitude = closestHelipad.helipadCoords.lng;
-        } else {
-            mission.viaLatitude = undefined;
-            mission.viaLongitude = undefined;
-        }
-    }
-
 
     constructor(mapRef, helipadsRef) {
         this.#mapRef = mapRef;
@@ -138,12 +112,6 @@ class Missions {
 
 
     async update(missions) {
-
-        missions.forEach(mission => {
-            if (mission.viaLatitude !== undefined)
-                this.#findViaPoint(mission)
-        });
-
         this.#missions = await Promise.all(
             missions.map(async mission => {
                 return {

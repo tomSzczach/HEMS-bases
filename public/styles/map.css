@@ -25,93 +25,134 @@
 }
 
 
-/* BASE POPUP */
+/* BASE MARKER */
 
 .base-marker {
-    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.89;
+}
+
+.base-marker .container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.base-marker .outer-box {
+    width: 100%;
+    height: 100%;
+
+    padding: 2px;
     border: 3px solid;
-    overflow: hidden;
-}
+    border-radius: 50%;
 
-.base-marker:has(.status-1) {
-    background-color: #66CC00;
-}
-
-.base-marker:has(.status-2, .status-3, .status-4, .status-5) {
-    background-color: #FFCC00;
-}
-
-.base-marker:has(.status-6) {
-    background-color: #00FF00;
-}
-
-.base-marker:has(.status-7) {
-    background-color: #FF0033;
-}
-
-.base-marker:has(.status-8) {
-    background-color: #C0C0C0;
-}
-
-.base-marker:has(.status-9) {
-    background-color: #FF0099;
-}
-
-.base-marker:has(.status-10) {
-    background-color: #808080;
-}
-
-.base-marker:has(.status-) {
-    background-color: var(--color-black);
-    opacity: 0.21 !important;
-}
-
-.base-marker:has(.weather-) {
-    border-color: var(--color-black);
-}
-
-.base-marker:has(.weather-0) {
-    border-color: #CC0033;
-}
-
-.base-marker:has(.weather-1) {
-    border-color: #FFFF00;
-}
-
-.base-marker:has(.weather-2) {
-    border-color: #009933;
-}
-
-.base-marker p {
-    margin: 0;
-    text-align: center;
-}
-
-.base-marker .content-box {
-    display: grid;
-    grid-template-rows: 1fr 3fr;
-    justify-items: stretch;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.base-marker .inner-box {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+}
+
+.base-marker .img-box {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.base-marker img {
+    width: 100%;
     height: 100%;
 }
 
-.base-marker .content-box .base-name {
-    background-color: #FFFFFF;
-    color: var(--color-black);
+.base-marker .badge {
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    width: 96%;
+    height: 28%;
+    left: 3%;
+    top: -20%;
 }
 
-.base-marker .content-box .base-name p {
+.base-marker .badge > div {
+    border: 1px solid;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
     font-size: var(--font-size-normal);
-    font-weight: bold;
 }
 
-.base-marker .content-box .base-status {
-    color: var(--color-white);
+.base-marker .badge > div:not(:first-of-type) {
+    border-left: none;
 }
 
-.base-marker .content-box .base-status p {
-    font-size: var(--font-size-large);
-    font-weight: bold;
+
+.base-marker .hems-status- {
+    background-color: #D0D0D080;
+}
+
+.base-marker .hems-status-1 {
+    background-color: #66CC00;
+}
+
+.base-marker .hems-status-2, 
+.base-marker .hems-status-3,
+.base-marker .hems-status-4,
+.base-marker .hems-status-5 {
+    background-color: #FFCC00;
+}
+
+.base-marker .hems-status-6 {
+    background-color: #00FF00;
+}
+
+.base-marker .hems-status-7 {
+    background-color: #FF0033;
+}
+
+.base-marker .hems-status-8 {
+    background-color: #C0C0C0;
+}
+
+.base-marker .hems-status-9 {
+    background-color: #FF0099;
+}
+
+.base-marker .hems-status-10 {
+    background-color: #808080;
+}
+
+.base-marker .hems-status-transport {
+    background-color: #33CCFF;
+}
+
+
+.base-marker .weather-status- {
+    border-color: #D0D0D080;
+}
+
+.base-marker .weather-status-0 {
+    border-color: #CC0033;
+}
+
+.base-marker .weather-status-1 {
+    border-color: #FFFF00;
+}
+
+.base-marker .weather-status-2 {
+    border-color: #009933;
 }
 
 

@@ -2,6 +2,8 @@ class Base {
     
     #url = undefined;
 
+    #helipadsRef = undefined;
+
     #isValid = false;
 
     #model = {
@@ -60,6 +62,11 @@ class Base {
             this.#model.hemsStatus = data.querySelector('[Name="STATUS"]').textContent;
             this.#model.hemsStatusDescirption = data.querySelector('[Name="HEMSSTATUSDESCRIPTION"]').textContent;
             this.#model.weatherStatus = data.querySelector('[Name="WEATHER"]').textContent;
+
+            if (this.#model.viaLatitude !== undefined) {
+                this.#findViaPoint();
+            }
+
             this.#isValid = true;
         }
         else
@@ -68,9 +75,37 @@ class Base {
         }
     }
 
+    #findViaPoint() {
+        const possibleViaHelipads = this.#helipadsRef.placedAtLatitude(this.#model.viaLatitude);
+        const baseCoords = L.latLng(this.#model.baseLatitude, this.#model.baseLongitude);
 
-    constructor(baseInfo) {
+        if (possibleViaHelipads.length === 0)
+            return;
+
+        const closestHelipad = possibleViaHelipads.reduce((closest, helipadCoords) => {
+            const distanceToHelipad = baseCoords.distanceTo(helipadCoords);
+
+            if (!closest || distanceToHelipad < closest.distance) {
+                return { helipadCoords, distance: distanceToHelipad };
+            }
+
+            return closest;
+        }, null);
+
+        if (closestHelipad) {
+            this.#model.viaLatitude = closestHelipad.helipadCoords.lat;
+            this.#model.viaLongitude = closestHelipad.helipadCoords.lng;
+        } else {
+            this.#model.viaLatitude = undefined;
+            this.#model.viaLongitude = undefined;
+        }
+    }
+
+
+    constructor(baseInfo, helipadsRef) {
         this.#url = baseInfo.url;
+
+        this.#helipadsRef = helipadsRef;
 
         this.#model.city = baseInfo.city;
         this.#model.aircraftName = baseInfo.aircraftName;
@@ -98,23 +133,34 @@ class Base {
         if (!this.#isValid)
             return undefined;
 
-        const { shortName, baseLatitude, baseLongitude, hemsStatus, weatherStatus } = this.#model;
+        const { shortName, baseLatitude, baseLongitude, viaLatitude, viaLongitude, hemsStatus, weatherStatus } = this.#model;
 
+        const isViaPoint = viaLatitude && viaLongitude;
+ 
         return L.marker()
                 .setLatLng([baseLatitude, baseLongitude])
-                .setOpacity(0.89)
                 .setIcon(
                     L.divIcon({
-                        html:
-                            `<div class="content-box status-${hemsStatus} weather-${weatherStatus}">
-                                <div class="base-name">
-                                    <p>${shortName}</p>
+                        html: `
+                            <div class="container">
+                                <div class="outer-box weather-status-${weatherStatus}">
+                                    <div class="inner-box hems-status-${isViaPoint ? 'transport' : hemsStatus}">
+                                        <div class="img-box">
+                                            <img src="images/helicopter-icon.png" alt="helicopter icon" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="base-status">
-                                    <p>${(hemsStatus) ? hemsStatus : "b.d." }</p>
+                                <div class="badge">
+                                    <div class="base-name">
+                                        ${shortName}
+                                    </div>
+                                    <div class="base-status hems-status-${hemsStatus}">
+                                        ${(hemsStatus) ? hemsStatus : "b.d." }
+                                    </div>
                                 </div>
-                            </div>`,
-                        iconSize: [40, 40],
+                            </div>
+                        `,
+                        iconSize: [55, 55],
                         className: "base-marker"
                     })
                 );

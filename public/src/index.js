@@ -1,8 +1,8 @@
 const map = new Map();
 
-const bases = new Bases(map.mapRef);
 const helipads = new Helipads(map.mapRef);
-const missions = new Missions(map.mapRef, helipads);
+const bases = new Bases(map.mapRef, helipads);
+const missions = new Missions(map.mapRef);
 const voivodeships = new Voivodeships(map.mapRef);
 const controlZones = new CTRs(map.mapRef);
 const weatherRadar = new WeatherRadar(map.mapRef);

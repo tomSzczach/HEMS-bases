@@ -3,10 +3,11 @@ class Bases extends EventTarget {
     #bases = []
     #views = []
     #mapRef = undefined;
+    #helipadsRef = undefined;
 
 
     #initBases(basesData) {
-        this.#bases = basesData.map(baseData => new Base(baseData));
+        this.#bases = basesData.map(baseData => new Base(baseData, this.#helipadsRef));
     }
 
     #updateViews() {
@@ -30,9 +31,10 @@ class Bases extends EventTarget {
     }
 
 
-    constructor(mapRef) {
+    constructor(mapRef, helipadsRef) {
         super();
         this.#mapRef = mapRef;
+        this.#helipadsRef = helipadsRef;
 
         fetch('src/data/basesInfo.txt')
             .then(response => response.text())
