@@ -1,6 +1,7 @@
 class LSProvider {
 
     static #default = {
+        "password": "",
         "updateInterval": 300,
         "showingMissions": true,
         "showingBases": true,
@@ -11,6 +12,7 @@ class LSProvider {
     }
 
     static keys = {
+        password: "password",
         updateInterval: "updateInterval",
         showingMissions: "showingMissions",
         showingBases: "showingBases",
@@ -25,6 +27,10 @@ class LSProvider {
         value ??= this.#default[key];
 
         switch (key) {
+            case this.keys.password:
+                value = String(value);
+                break;
+
             case this.keys.updateInterval:
                 value = parseInt(value);
                 break;

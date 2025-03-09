@@ -1,4 +1,4 @@
-let password = "";
+let password = LSProvider.get(LSProvider.keys.password);
 
 const decrypt = (ciphertext) => {
     try {
@@ -16,3 +16,5 @@ const decrypt = (ciphertext) => {
 while (password === null || password.length === 0) {
     password = prompt("Podaj hasło:");
 }
+
+LSProvider.set(LSProvider.keys.password, password);
