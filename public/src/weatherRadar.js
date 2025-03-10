@@ -14,7 +14,7 @@ class WeatherRadar {
         ];
 
         const styles = {
-            opacity: 0.89
+            opacity: 0.34
         };
 
         this.#view = L.imageOverlay(radarImageUrl, imageBounds, styles);
