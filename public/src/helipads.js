@@ -47,6 +47,6 @@ class Helipads {
     placedAtLatitude(lat) {
         return this.#helipads
             .map(helipad => helipad.coordinates)
-            .filter(coordinates => Math.abs(coordinates.lat - lat) < 0.01); // 0.01 degree of latitude is about 1 km
+            .filter(coordinates => Math.abs(coordinates.lat - lat) < 0.0001); // 0.0001 degree of latitude is about 11.1 m
     }
 }
