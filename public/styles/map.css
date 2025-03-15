@@ -80,9 +80,9 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    width: 5em;
+    width: 6em;
     height: 1.5em;
-    left: calc(-2.5em + 27.5px); /* centered relative to the center of the base img (width=55px) */
+    left: calc(-3em + 30px); /* centered relative to the center of the base img (width=55px) */
     top: -1.3em;
     font-size: var(--font-size-semi-large);
 }
