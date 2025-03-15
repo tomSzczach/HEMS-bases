@@ -80,10 +80,11 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    width: 96%;
-    height: 28%;
-    left: 3%;
-    top: -20%;
+    width: 5em;
+    height: 1.5em;
+    left: calc(-2.5em + 27.5px); /* centered relative to the center of the base img (width=55px) */
+    top: -1.3em;
+    font-size: var(--font-size-semi-large);
 }
 
 .base-marker .badge > div {
@@ -91,7 +92,7 @@
     width: 50%;
     text-align: center;
     font-weight: bold;
-    font-size: var(--font-size-normal);
+    
 }
 
 .base-marker .badge > div:not(:first-of-type) {
