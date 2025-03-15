@@ -160,7 +160,7 @@ class Base {
                                 </div>
                             </div>
                         `,
-                        iconSize: [55, 55],
+                        iconSize: [60, 60],
                         className: "base-marker"
                     })
                 );
